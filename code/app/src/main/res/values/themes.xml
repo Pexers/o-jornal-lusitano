@@ -18,7 +18,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="colorAccent">@color/charcoal</item>
-        <item name="colorControlNormal">@color/black</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:colorControlHighlight">@color/crayola</item>  <!-- Button ripple -->
+        <item name="android:listDivider">@color/argent</item>  <!-- NavigationView divider -->
     </style>
 </resources>

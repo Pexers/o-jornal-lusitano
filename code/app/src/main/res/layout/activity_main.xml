@@ -63,28 +63,14 @@
 
     </RelativeLayout>
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:itemIconPadding="10dp"
+        app:itemIconTint="?android:textColor"
+        app:itemTextColor="?android:textColor"
         app:menu="@menu/menu_side_bar" />
-
-    <!--
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            style="@style/SelectableItemBackground"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="?backgroundColor"
-            app:headerLayout="@layout/header_nav_view"
-            app:itemIconPadding="10dp"
-            app:itemIconTint="?textJournalColor"
-            app:itemTextColor="?textJournalColor"
-            app:menu="@menu/menu_side_bar"
-            app:theme="@style/NavigationDrawerStyle" />-->
 
 </androidx.drawerlayout.widget.DrawerLayout>
