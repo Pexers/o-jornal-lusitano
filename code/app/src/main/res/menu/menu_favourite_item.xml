@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 11/16/2022, Pexers (https://github.com/Pexers)
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/browser_favourite_item"
+        android:title="@string/browser_favourite" />
+    <item
+        android:id="@+id/share_journal"
+        android:title="@string/share_journal" />
+</menu>
