@@ -1,9 +1,28 @@
-<!--
-  ~ Copyright © 11/16/2022, Pexers (https://github.com/Pexers)
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/17/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
     <string name="app_name">O Jornal Lusitano</string>
+    <string name="category_all">All</string>
+    <string name="category_economy_politics">Economy/Politics</string>
+    <string name="category_fashion">Fashion</string>
+    <string name="category_general">General</string>
+    <string name="category_sports">Sports</string>
+    <string name="category_technology">Technology</string>
+    <string name="drawer_open">Drawer Opened</string>
+    <string name="drawer_close">Drawer Closed</string>
+    <string name="empty">(Empty)</string>
+    <string name="item_about">About</string>
+    <string name="item_categories">Categories</string>
+    <string name="item_favourites">Favourites</string>
+    <string name="item_recent">Recent</string>
+    <string name="search_journal">Search journal</string>
+
+
+    <!--
+
+
     <string name="version">Version: 1.1.0</string>
     <string name="about" translatable="false">Info</string>
     <string name="dark_mode">Dark Mode</string>
@@ -46,5 +65,5 @@
         a fast and organized access to trusted journals, however
         we are not responsible for the veracity of the contents
         displayed by those or for any possible damage caused by it.
-    </string>
+    </string>-->
 </resources>

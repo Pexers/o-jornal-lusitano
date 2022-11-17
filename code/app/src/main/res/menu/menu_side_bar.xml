@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright © 11/16/2022, Pexers (https://github.com/Pexers)
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/17/2022, Pexers (https://github.com/Pexers)
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/first_group">
         <item
-            android:id="@+id/section_all"
-            android:icon="@drawable/ic_show_all"
-            android:title="@string/section_all" />
+            android:id="@+id/item_all"
+            android:icon="@drawable/ic_categories"
+            android:title="@string/item_categories" />
         <item
-            android:id="@+id/section_favourites"
+            android:id="@+id/item_favourites"
             android:icon="@drawable/ic_favourite_on"
-            android:title="@string/section_favourites" />
+            android:title="@string/item_favourites" />
     </group>
 
     <group android:id="@+id/second_group">
         <item
-            android:id="@+id/section_recent"
+            android:id="@+id/item_recent"
             android:icon="@drawable/ic_recent"
-            android:title="@string/section_recent" />
+            android:title="@string/item_recent" />
     </group>
 
     <group android:id="@+id/third_group">
@@ -35,8 +34,8 @@
             android:title="@string/rate" />-->
 
         <item
-            android:id="@+id/about_item"
+            android:id="@+id/item_about"
             android:icon="@drawable/ic_about"
-            android:title="@string/about" />
+            android:title="@string/item_about" />
     </group>
 </menu>

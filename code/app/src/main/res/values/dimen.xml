@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/17/2022, Pexers (https://github.com/Pexers)
+  -->
+
+<resources>
+    <dimen name="button_size">31dp</dimen>
+    <dimen name="button_padding">18dp</dimen>
+</resources>
