@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/17/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/18/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.fragments
@@ -77,14 +77,15 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         }
     }
 
-    fun updateCategory(cat: Categories) {
-        binding.textCategory.text = getString(cat.catId)
+    private fun updateCategory(cat: Categories) {
+        binding.textCategory.text = getString(cat.displayName)
+        (activity as MainActivity).filterByCategory(cat)
     }
 
 }
 
 // @formatter:off
-enum class Categories(val catId: Int) {
+enum class Categories(val displayName: Int) {
     ALL(R.string.category_all),
     ECONOMY_POLITICS(R.string.category_economy_politics),
     FASHION(R.string.category_fashion),

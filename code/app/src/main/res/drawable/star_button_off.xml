@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 8/3/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/18/2022, Pexers (https://github.com/Pexers)
   -->
 
+<!-- The layout size enables the increase of toggle size without increasing icon size -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:drawable="@drawable/ic_search"
+        android:drawable="@drawable/ic_star_off"
         android:gravity="center" />
 </layer-list>

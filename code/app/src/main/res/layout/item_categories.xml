@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 8/3/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/18/2022, Pexers (https://github.com/Pexers)
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,4 +21,14 @@
         android:text="Journal Name"
         android:textAllCaps="true"
         android:textSize="@dimen/item_text_size" />
+
+    <ToggleButton
+        android:id="@+id/toggle_favourites"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center_vertical"
+        android:background="@drawable/star_button"
+        android:textOff=""
+        android:textOn="" />
+
 </FrameLayout>
