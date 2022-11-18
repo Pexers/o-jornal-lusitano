@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.pexers.ojornallusitano.R
+import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentCategoriesBinding
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
@@ -24,6 +26,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     ): View {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         updateCategory(Categories.ALL)
+        initPopupMenu()
         initSearchBar()
         return binding.root
     }
@@ -33,8 +36,22 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         _binding = null
     }
 
-    fun updateCategory(cat: Categories) {
-        binding.textCategory.text = getString(cat.catId)
+    private fun initPopupMenu() {
+        val popupMenu = PopupMenu(activity, binding.toggleCategories)
+        popupMenu.inflate(R.menu.menu_categories)
+        binding.toggleCategories.setOnCheckedChangeListener { _, isChecked -> if (isChecked) popupMenu.show() }
+        popupMenu.setOnDismissListener { binding.toggleCategories.isChecked = false }
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.item_all -> updateCategory(Categories.ALL)
+                R.id.item_economy -> updateCategory(Categories.ECONOMY_POLITICS)
+                R.id.item_general -> updateCategory(Categories.GENERAL)
+                R.id.item_fashion -> updateCategory(Categories.FASHION)
+                R.id.item_sports -> updateCategory(Categories.SPORTS)
+                R.id.item_technology -> updateCategory(Categories.TECHNOLOGY)
+            }
+            true
+        }
     }
 
     private fun initSearchBar() {
@@ -59,6 +76,11 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
             }
         }
     }
+
+    fun updateCategory(cat: Categories) {
+        binding.textCategory.text = getString(cat.catId)
+    }
+
 }
 
 // @formatter:off
@@ -67,6 +89,7 @@ enum class Categories(val catId: Int) {
     ECONOMY_POLITICS(R.string.category_economy_politics),
     FASHION(R.string.category_fashion),
     GENERAL(R.string.category_general),
-    SPORTS(R.string.category_sports), TECHNOLOGY(R.string.category_technology)
+    SPORTS(R.string.category_sports),
+    TECHNOLOGY(R.string.category_technology)
 }
 // @formatter:on

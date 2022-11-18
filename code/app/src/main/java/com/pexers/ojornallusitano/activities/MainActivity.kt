@@ -9,9 +9,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
+import com.pexers.ojornallusitano.adapters.CategoriesAdapter
 import com.pexers.ojornallusitano.databinding.ActivityMainBinding
 import com.pexers.ojornallusitano.fragments.CategoriesFragment
+import com.pexers.ojornallusitano.fragments.FavouritesFragment
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
 
@@ -27,7 +32,17 @@ class MainActivity : AppCompatActivity() {
         val toolbar = binding.toolbarMain.toolbarMain
         setSupportActionBar(toolbar)
         setupNav(toolbar)
+        initRecyclerView(binding.recyclerViewJournals)
+    }
 
+    private fun initRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.apply {
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+            layoutManager = LinearLayoutManager(context)
+        }
+        recyclerView.adapter =
+            CategoriesAdapter(arrayOf("Testing1", "Testing2", "Testing3"))
+        recyclerView.startLayoutAnimation()
     }
 
     private fun setupNav(toolbar: Toolbar) {
@@ -38,18 +53,20 @@ class MainActivity : AppCompatActivity() {
         // Setup on item selected listener
         val drawerLayout = binding.drawerLayout
         val categoriesFragment = CategoriesFragment()
+        val favouritesFragment = FavouritesFragment()
 
-        setAllFragment(categoriesFragment) // Initial fragment
+        setCategoriesFragment(categoriesFragment) // Initial fragment
         binding.navigation.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_all -> {
-                    setAllFragment(categoriesFragment)
+                    setCategoriesFragment(categoriesFragment)
                     if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                         drawerLayout.closeDrawer(GravityCompat.START)
                     }
                     true
                 }
                 R.id.item_favourites -> {
+                    setFavouritesFragment(favouritesFragment)
                     if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                         drawerLayout.closeDrawer(GravityCompat.START)
                     }
@@ -78,9 +95,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAllFragment(categoriesFragment: CategoriesFragment) {
+    private fun setCategoriesFragment(catFragment: CategoriesFragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame_layout_main, categoriesFragment)
+            replace(R.id.frame_layout_main, catFragment)
+            commit()
+        }
+    }
+
+    private fun setFavouritesFragment(favFragment: FavouritesFragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frame_layout_main, favFragment)
             commit()
         }
     }
