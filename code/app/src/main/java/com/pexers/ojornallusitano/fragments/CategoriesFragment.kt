@@ -55,17 +55,15 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     }
 
     private fun initSearchBar() {
-        binding.toggleSearch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                binding.editTextSearchBar.apply {
+        binding.toggleSearchCategories.setOnCheckedChangeListener { _, isChecked ->
+            binding.searchBar.apply {
+                if (isChecked) {
                     visibility = View.VISIBLE
                     requestFocus()
                     startAnimation(
                         AnimationUtils.loadAnimation(context, R.anim.search_bar_in)
                     )
-                }
-            } else {
-                binding.editTextSearchBar.apply {
+                } else {
                     visibility = View.GONE
                     clearFocus()
                     text.clear()
@@ -78,8 +76,9 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     }
 
     private fun updateCategory(cat: Categories) {
-        binding.textCategory.text = getString(cat.displayName)
-        (activity as MainActivity).filterByCategory(cat)
+        binding.textViewCategory.text = getString(cat.displayName)
+        val mainAct = activity as MainActivity
+        mainAct.updateRecyclerView(mainAct.filterByCategory(cat))
     }
 
 }

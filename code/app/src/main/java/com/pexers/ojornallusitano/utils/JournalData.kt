@@ -7,7 +7,7 @@ package com.pexers.ojornallusitano.utils
 import com.pexers.ojornallusitano.fragments.Categories
 
 data class JournalsData(
-    val journals: List<JournalData>
+    val journals: ArrayList<JournalData>
 )
 
 data class JournalData(

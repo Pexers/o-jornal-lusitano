@@ -11,32 +11,27 @@ object SharedPreferencesData {
 
     private lateinit var editor: SharedPreferences.Editor
     private var sharedPreferences: SharedPreferences? = null
+    var favourites: MutableSet<String>? = null
 
     fun init(context: Context) {
         if (sharedPreferences == null) {
             sharedPreferences = context.getSharedPreferences("dataFile", Context.MODE_PRIVATE)
+            favourites =
+                sharedPreferences!!.getStringSet("favouritesSet", emptySet())!!.toMutableSet()
             editor = sharedPreferences!!.edit()
             editor.apply()
         }
     }
 
-    fun saveSingleFavouriteData(journalName: String, toRemove: Boolean) {
-        val copyOfSet = loadFavouritesData()
-        if (toRemove) {
-            copyOfSet.remove(journalName)
-        } else
-            copyOfSet.add(journalName)
-        editor.putStringSet("favouritesSet", copyOfSet).apply()
+    fun addFavourite(journalName: String) {
+        favourites!!.add(journalName)
+        editor.putStringSet("favouritesSet", favourites).apply()
     }
 
-    fun loadFavouritesData(): MutableSet<String> {
-        val savedSet = sharedPreferences!!.getStringSet("favouritesSet", sortedSetOf())
-        return savedSet!!.toMutableSet()
-    }
-
-    fun deleteFavouritesData() {
-        editor.remove("favouritesSet")
-        editor.putStringSet("favouritesSet", emptySet()).apply()
+    fun removeFavourite(journalName: String) {
+        favourites!!.remove(journalName)
+        editor.putStringSet("favouritesSet", favourites).apply()
+        println(favourites)
     }
 
     fun setToDisplayFavourites(state: Boolean) {

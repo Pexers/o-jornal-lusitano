@@ -4,7 +4,7 @@
 
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_main"
+    android:id="@+id/toolbar_nav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?colorPrimary"
@@ -12,7 +12,6 @@
     app:contentInsetStart="0dp">
 
     <TextView
-        android:id="@+id/text_OJornalLusitano"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"

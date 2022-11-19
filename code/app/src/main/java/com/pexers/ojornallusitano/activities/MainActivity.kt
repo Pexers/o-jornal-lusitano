@@ -9,11 +9,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.adapters.CategoriesAdapter
+import com.pexers.ojornallusitano.adapters.FavouritesAdapter
+import com.pexers.ojornallusitano.adapters.JournalsAdapter
 import com.pexers.ojornallusitano.databinding.ActivityMainBinding
 import com.pexers.ojornallusitano.fragments.Categories
 import com.pexers.ojornallusitano.fragments.CategoriesFragment
@@ -28,25 +31,42 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var journals: List<JournalData>
+    private lateinit var journals: ArrayList<JournalData>
+
+    private var categoriesAd = CategoriesAdapter(arrayListOf())
+    private var favouritesAd = FavouritesAdapter(arrayListOf())
+    private var categoriesFrag = CategoriesFragment()
+    private var favouritesFrag = FavouritesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SharedPreferencesData.init(applicationContext)  // Load shared preferences
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val toolbar = binding.toolbarMain.toolbarMain
+        val toolbar = binding.toolbarMain.toolbarNav
         setSupportActionBar(toolbar)
-        setupNav(toolbar)
-        initRecyclerView(binding.recyclerViewJournals)
+        setupNav(toolbar, binding.recyclerViewMain)
+        initRecyclerView(binding.recyclerViewMain)
     }
 
-    fun filterByCategory(cat: Categories) {
-        val recyclerView = binding.recyclerViewJournals
-        val adapter = recyclerView.adapter as CategoriesAdapter
-        adapter.setData(if (cat == Categories.ALL) journals else journals.filter { j -> j.category.name == cat.name })
+    fun updateRecyclerView(dataSet: ArrayList<JournalData>) {
+        val recyclerView = binding.recyclerViewMain
+        (recyclerView.adapter as JournalsAdapter).setData(dataSet)
         recyclerView.startLayoutAnimation()
     }
+
+    private fun updateFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frameLayout_main, fragment)
+            commit()
+        }
+    }
+
+    fun filterByCategory(category: Categories) =
+        if (category == Categories.ALL) journals else journals.filter { j -> j.category.name == category.name } as ArrayList<JournalData>
+
+    private fun filterByFavourites() =
+        journals.filter { j -> SharedPreferencesData.favourites!!.contains(j.name) } as ArrayList<JournalData>
 
     private fun initRecyclerView(recyclerView: RecyclerView) {
         val journalsJson = inputStreamToString(application.assets.open("journals.json"))
@@ -55,32 +75,35 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
             layoutManager = LinearLayoutManager(context)
         }
-        recyclerView.adapter = CategoriesAdapter(journals)
-        recyclerView.startLayoutAnimation()
+        // TODO: Set last adapter used by user
+        updateFragment(categoriesFrag)
+        recyclerView.adapter = categoriesAd
+        updateRecyclerView(journals)
     }
 
-    private fun setupNav(toolbar: Toolbar) {
+    private fun setupNav(toolbar: Toolbar, recyclerView: RecyclerView) {
         // Init nav toggle
         ActionBarDrawerToggle(
-            this, binding.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close
+            this, binding.drawerLayoutMain, toolbar, R.string.drawer_open, R.string.drawer_close
         ).syncState()
         // Setup on item selected listener
-        val drawerLayout = binding.drawerLayout
-        val categoriesFragment = CategoriesFragment()
-        val favouritesFragment = FavouritesFragment()
+        val drawerLayout = binding.drawerLayoutMain
 
-        setCategoriesFragment(categoriesFragment) // Initial fragment
-        binding.navigation.setNavigationItemSelectedListener {
+        binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_all -> {
-                    setCategoriesFragment(categoriesFragment)
+                    updateFragment(categoriesFrag)
+                    recyclerView.adapter = categoriesAd
+                    updateRecyclerView(journals)
                     if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                         drawerLayout.closeDrawer(GravityCompat.START)
                     }
                     true
                 }
                 R.id.item_favourites -> {
-                    setFavouritesFragment(favouritesFragment)
+                    updateFragment(favouritesFrag)
+                    recyclerView.adapter = favouritesAd
+                    updateRecyclerView(filterByFavourites())
                     if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                         drawerLayout.closeDrawer(GravityCompat.START)
                     }
@@ -109,17 +132,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCategoriesFragment(catFragment: CategoriesFragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame_layout_main, catFragment)
-            commit()
-        }
-    }
-
-    private fun setFavouritesFragment(favFragment: FavouritesFragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame_layout_main, favFragment)
-            commit()
-        }
-    }
 }
