@@ -4,7 +4,9 @@
 
 package com.pexers.ojornallusitano.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -24,19 +26,18 @@ import com.pexers.ojornallusitano.fragments.FavouritesFragment
 import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
 import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString
+import com.pexers.ojornallusitano.utils.MyListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MyListener {
 
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var journals: ArrayList<JournalData>
 
-    private var categoriesAd = CategoriesAdapter(arrayListOf())
-    private var favouritesAd = FavouritesAdapter(arrayListOf())
-    private var categoriesFrag = CategoriesFragment()
-    private var favouritesFrag = FavouritesFragment()
+    private val categoriesAd = CategoriesAdapter(arrayListOf(), this)
+    private val favouritesAd = FavouritesAdapter(arrayListOf(), this)
+    private val categoriesFrag = CategoriesFragment()
+    private val favouritesFrag = FavouritesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +46,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val toolbar = binding.toolbarMain.toolbarNav
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)  // Remove title from ActionBar
         setupNav(toolbar, binding.recyclerViewMain)
         initRecyclerView(binding.recyclerViewMain)
+    }
+
+    override fun switchToWebViewActivity(journal: JournalData) {
+        val webViewActivity = Intent(this, WebViewActivity::class.java)
+        // Send URL as an intent parameter
+        webViewActivity.putExtra("url", journal.url)
+        startActivity(webViewActivity)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     fun updateRecyclerView(dataSet: ArrayList<JournalData>) {
         val recyclerView = binding.recyclerViewMain
         (recyclerView.adapter as JournalsAdapter).setData(dataSet)
         recyclerView.startLayoutAnimation()
+        checkEmptyRecyclerView(dataSet)
     }
 
     private fun updateFragment(fragment: Fragment) {
@@ -130,6 +141,12 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun checkEmptyRecyclerView(dataSet: ArrayList<JournalData>) {
+        if (dataSet.isEmpty()) {
+            binding.textViewEmptyRecyclerView.visibility = View.VISIBLE
+        } else binding.textViewEmptyRecyclerView.visibility = View.GONE
     }
 
 }

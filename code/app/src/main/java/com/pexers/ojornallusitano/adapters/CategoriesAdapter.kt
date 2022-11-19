@@ -13,9 +13,10 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.utils.MyListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
-class CategoriesAdapter(private var dataSet: ArrayList<JournalData>) :
+class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MyListener) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun setData(data: ArrayList<JournalData>) {
@@ -36,8 +37,7 @@ class CategoriesAdapter(private var dataSet: ArrayList<JournalData>) :
             textView = view.findViewById(R.id.textView_categoryJournal)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_categoryJournal)
             frameLayout.setOnClickListener {
-                val journal = this@CategoriesAdapter.dataSet[adapterPosition]
-                // TODO: open webpage using URL
+                mainActListener.switchToWebViewActivity(this@CategoriesAdapter.dataSet[adapterPosition])
             }
             starToggle = view.findViewById(R.id.toggle_categoryJournalStar)
             starToggle.setOnCheckedChangeListener { _, isChecked ->

@@ -12,9 +12,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.utils.MyListener
 
-class FavouritesAdapter(private var dataSet: ArrayList<JournalData>) :
-    RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(),JournalsAdapter {
+class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MyListener) :
+    RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun setData(data: ArrayList<JournalData>) {
         dataSet = data
@@ -33,8 +34,7 @@ class FavouritesAdapter(private var dataSet: ArrayList<JournalData>) :
             textView = view.findViewById(R.id.textView_favouriteJournal)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_favouriteJournal)
             frameLayout.setOnClickListener {
-                val journal = this@FavouritesAdapter.dataSet[adapterPosition]
-                // TODO: open webpage using URL
+                mainActListener.switchToWebViewActivity(this@FavouritesAdapter.dataSet[adapterPosition])
             }
         }
     }

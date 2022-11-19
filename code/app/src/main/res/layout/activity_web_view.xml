@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/18/2022, Pexers (https://github.com/Pexers)
+  -->
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout_webView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.WebViewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_webView"
+            layout="@layout/toolbar_web" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_webView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/toolbar_webView"
+            android:layout_alignStart="@+id/toolbar_webView"
+            android:layout_alignEnd="@+id/toolbar_webView"
+            android:layout_marginTop="-4dp"
+            android:gravity="top"
+            android:progress="25"
+            android:progressDrawable="@drawable/progress_bar" />
+
+        <!--
+        <RelativeLayout
+            android:id="@+id/layout_noInternet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_backButton">
+
+            <TextView
+                android:id="@+id/text_noInternetWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/no_internet_connection"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/image_noInternet"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_above="@+id/text_noInternetWarning"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/no_internet_connection" />
+
+            <Button
+                android:id="@+id/button_retryConnection"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/text_noInternetWarning"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_border"
+                android:text="@string/retry_internet_connection"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+        </RelativeLayout>-->
+
+        <!--
+          android:layout_alignEnd="@+id/toolbar_backButton"
+          android:layout_below="@+id/toolbar_backButton"
+          android:layout_alignStart="@+id/toolbar_backButton"
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="top"
+            android:progressDrawable="@drawable/progress_bar" />
+ -->
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

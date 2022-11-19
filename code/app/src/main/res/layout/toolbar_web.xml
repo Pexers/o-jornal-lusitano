@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/18/2022, Pexers (https://github.com/Pexers)
+  -->
+
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_web"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:contentInsetStart="0dp">
+
+    <ImageButton
+        android:id="@+id/imageButton_goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/button_padding"
+        android:background="@android:color/transparent"
+        android:src="?actionModeCloseDrawable" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/averia_serif_libre_light"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
+
+    <ImageButton
+        android:id="@+id/imageButton_reload"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/button_padding"
+        android:background="@android:color/transparent"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:src="@drawable/ic_reload" />
+
+</androidx.appcompat.widget.Toolbar>
