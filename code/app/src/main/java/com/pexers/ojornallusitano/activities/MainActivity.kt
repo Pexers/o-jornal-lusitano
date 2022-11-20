@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), WebViewListener {
     }
 
     override fun switchToWebViewActivity(journal: JournalData) {
-        updateRecentQueue(journal)
+        addToRecentQueue(journal)
         val webViewActivity = Intent(this, WebViewActivity::class.java)
         // Send URL as an intent parameter
         webViewActivity.putExtra("url", journal.url)
@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
-    fun updateRecyclerView(dataSet: ArrayList<JournalData>) {
+    fun updateRecyclerView(dataSet: ArrayList<JournalData>, skipAnimation: Boolean = false) {
         val recyclerView = binding.recyclerViewMain
         (recyclerView.adapter as JournalsAdapter).setData(dataSet)
-        recyclerView.startLayoutAnimation()
+        if (!skipAnimation) recyclerView.startLayoutAnimation()
         checkEmptyRecyclerView(dataSet)
     }
 
@@ -81,6 +81,16 @@ class MainActivity : AppCompatActivity(), WebViewListener {
 
     fun filterByCategory(category: Categories) =
         if (category == Categories.ALL) journals else journals.filter { j -> j.category.name == category.name } as ArrayList<JournalData>
+
+    fun filterByInput(input: String, dataSet: ArrayList<JournalData>) =
+        if (input.isBlank()) dataSet else dataSet.filter { j ->
+            j.name.trim().contains(input.trim(), ignoreCase = true)
+        } as ArrayList<JournalData>
+
+    fun clearRecentQueue() {
+        recentJournals.clear()
+        updateRecyclerView(arrayListOf(), true)
+    }
 
     private fun filterByFavourites() =
         journals.filter { j -> SharedPreferencesData.favourites!!.contains(j.name) } as ArrayList<JournalData>
@@ -147,7 +157,7 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         }
     }
 
-    private fun updateRecentQueue(journal: JournalData) {
+    private fun addToRecentQueue(journal: JournalData) {
         if (recentJournals.contains(journal)) recentJournals.remove(journal)
         else if (recentJournals.size == 10) recentJournals.removeLast()
         recentJournals.add(0, journal)

@@ -10,12 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentCategoriesBinding
+import com.pexers.ojornallusitano.utils.JournalData
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
+
+    // Required for search feature
+    private var currentCategoryJournals = arrayListOf<JournalData>()
+
     private var _binding: FragmentCategoriesBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -55,6 +61,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     }
 
     private fun initSearchBar() {
+        val mainAct = activity as MainActivity
         binding.toggleSearchCategories.setOnCheckedChangeListener { _, isChecked ->
             binding.searchBar.apply {
                 if (isChecked) {
@@ -69,12 +76,20 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                 }
             }
         }
+        binding.searchBar.addTextChangedListener {
+            mainAct.updateRecyclerView(
+                mainAct.filterByInput(
+                    it.toString(), currentCategoryJournals
+                ), true
+            )
+        }
     }
 
-    private fun updateCategory(cat: Categories) {
-        binding.textViewCategory.text = getString(cat.displayName)
+    private fun updateCategory(category: Categories) {
+        binding.textViewCategory.text = getString(category.displayName)
         val mainAct = activity as MainActivity
-        mainAct.updateRecyclerView(mainAct.filterByCategory(cat))
+        currentCategoryJournals = mainAct.filterByCategory(category)
+        mainAct.updateRecyclerView(currentCategoryJournals)
     }
 
 }

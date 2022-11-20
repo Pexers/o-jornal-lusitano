@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.pexers.ojornallusitano.R
+import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentRecentBinding
 
 class RecentFragment : Fragment(R.layout.fragment_recent) {
@@ -28,7 +29,8 @@ class RecentFragment : Fragment(R.layout.fragment_recent) {
 
     private fun setupEmptyRecent() {
         binding.imageButtonEmptyRecent.setOnClickListener {
-            println("Clicked")
+            val mainAct = activity as MainActivity
+            mainAct.clearRecentQueue()
         }
     }
 
