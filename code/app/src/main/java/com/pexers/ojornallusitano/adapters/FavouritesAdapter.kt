@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
-import com.pexers.ojornallusitano.utils.MyListener
+import com.pexers.ojornallusitano.utils.WebViewListener
 
-class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MyListener) :
+class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
     RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun setData(data: ArrayList<JournalData>) {

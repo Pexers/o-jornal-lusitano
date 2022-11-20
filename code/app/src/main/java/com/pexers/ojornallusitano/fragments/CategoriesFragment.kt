@@ -26,7 +26,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     ): View {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         updateCategory(Categories.ALL)
-        initPopupMenu()
+        setupPopupMenu()
         initSearchBar()
         return binding.root
     }
@@ -36,7 +36,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         _binding = null
     }
 
-    private fun initPopupMenu() {
+    private fun setupPopupMenu() {
         val popupMenu = PopupMenu(activity, binding.toggleCategoriesPopup)
         popupMenu.inflate(R.menu.menu_categories)
         binding.toggleCategoriesPopup.setOnCheckedChangeListener { _, isChecked -> if (isChecked) popupMenu.show() }

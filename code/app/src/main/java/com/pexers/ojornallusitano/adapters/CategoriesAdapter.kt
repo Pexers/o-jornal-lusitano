@@ -13,10 +13,10 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
-import com.pexers.ojornallusitano.utils.MyListener
+import com.pexers.ojornallusitano.utils.WebViewListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
-class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MyListener) :
+class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun setData(data: ArrayList<JournalData>) {

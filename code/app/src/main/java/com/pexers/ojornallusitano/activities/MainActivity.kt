@@ -11,6 +11,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,21 +24,25 @@ import com.pexers.ojornallusitano.databinding.ActivityMainBinding
 import com.pexers.ojornallusitano.fragments.Categories
 import com.pexers.ojornallusitano.fragments.CategoriesFragment
 import com.pexers.ojornallusitano.fragments.FavouritesFragment
+import com.pexers.ojornallusitano.fragments.RecentFragment
 import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
 import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString
-import com.pexers.ojornallusitano.utils.MyListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
+import com.pexers.ojornallusitano.utils.WebViewListener
 
-class MainActivity : AppCompatActivity(), MyListener {
+class MainActivity : AppCompatActivity(), WebViewListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var journals: ArrayList<JournalData>
+    private val recentJournals = arrayListOf<JournalData>()
 
-    private val categoriesAd = CategoriesAdapter(arrayListOf(), this)
-    private val favouritesAd = FavouritesAdapter(arrayListOf(), this)
+    private val categoriesAdapt = CategoriesAdapter(arrayListOf(), this)
+    private val favouritesAdapt = FavouritesAdapter(arrayListOf(), this)
+
     private val categoriesFrag = CategoriesFragment()
     private val favouritesFrag = FavouritesFragment()
+    private val recentFrag = RecentFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,7 @@ class MainActivity : AppCompatActivity(), MyListener {
     }
 
     override fun switchToWebViewActivity(journal: JournalData) {
+        updateRecentQueue(journal)
         val webViewActivity = Intent(this, WebViewActivity::class.java)
         // Send URL as an intent parameter
         webViewActivity.putExtra("url", journal.url)
@@ -88,7 +94,7 @@ class MainActivity : AppCompatActivity(), MyListener {
         }
         // TODO: Set last adapter used by user
         updateFragment(categoriesFrag)
-        recyclerView.adapter = categoriesAd
+        recyclerView.adapter = categoriesAdapt
         updateRecyclerView(journals)
     }
 
@@ -99,47 +105,57 @@ class MainActivity : AppCompatActivity(), MyListener {
         ).syncState()
         // Setup on item selected listener
         val drawerLayout = binding.drawerLayoutMain
-
+        var currentItemId: Int = R.id.item_all
         binding.navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.item_all -> {
-                    updateFragment(categoriesFrag)
-                    recyclerView.adapter = categoriesAd
-                    updateRecyclerView(journals)
-                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
+            if (it.itemId == currentItemId) {
+                closeDrawer(drawerLayout)
+                false
+            } else {
+                currentItemId = it.itemId
+                when (it.itemId) {
+                    R.id.item_all -> {
+                        updateFragment(categoriesFrag)
+                        recyclerView.adapter = categoriesAdapt
+                        updateRecyclerView(journals)
+                        closeDrawer(drawerLayout)
+                        true
                     }
-                    true
-                }
-                R.id.item_favourites -> {
-                    updateFragment(favouritesFrag)
-                    recyclerView.adapter = favouritesAd
-                    updateRecyclerView(filterByFavourites())
-                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
+                    R.id.item_favourites -> {
+                        updateFragment(favouritesFrag)
+                        recyclerView.adapter = favouritesAdapt
+                        updateRecyclerView(filterByFavourites())
+                        closeDrawer(drawerLayout)
+                        true
                     }
-                    true
-                }
-                R.id.item_recent -> {
-                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
+                    R.id.item_recent -> {
+                        updateFragment(recentFrag)
+                        recyclerView.adapter = categoriesAdapt
+                        updateRecyclerView(recentJournals)
+                        closeDrawer(drawerLayout)
+                        true
                     }
-                    true
-                }
-                R.id.item_about -> {
-                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
+                    R.id.item_about -> {
+                        closeDrawer(drawerLayout)
+                        true
                     }
-                    true
-                }
-                else -> {
-                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
+                    else -> {
+                        closeDrawer(drawerLayout)
+                        false
                     }
-                    false
                 }
             }
+        }
+    }
 
+    private fun updateRecentQueue(journal: JournalData) {
+        if (recentJournals.contains(journal)) recentJournals.remove(journal)
+        else if (recentJournals.size == 10) recentJournals.removeLast()
+        recentJournals.add(0, journal)
+    }
+
+    private fun closeDrawer(drawerLayout: DrawerLayout) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
     }
 

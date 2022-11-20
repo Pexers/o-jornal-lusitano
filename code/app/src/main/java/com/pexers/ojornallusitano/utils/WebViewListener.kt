@@ -4,7 +4,7 @@
 
 package com.pexers.ojornallusitano.utils
 
-interface MyListener {
+interface WebViewListener {
 
     fun switchToWebViewActivity(journal: JournalData)
 

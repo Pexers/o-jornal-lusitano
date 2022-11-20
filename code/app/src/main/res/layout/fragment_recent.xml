@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="55dp"
-    tools:context=".fragments.FavouritesFragment">
+    tools:context=".fragments.RecentFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="2dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp"
-            android:layout_toStartOf="@+id/textView_favourites"
+            android:layout_toStartOf="@+id/textView_recent"
             android:background="@drawable/fade_in_line" />
 
         <View
@@ -25,29 +25,28 @@
             android:layout_height="2dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/textView_favourites"
+            android:layout_toEndOf="@id/textView_recent"
             android:background="@drawable/fade_out_line"
             android:gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/textView_favourites"
+            android:id="@+id/textView_recent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/averia_serif_libre_light"
-            android:text="@string/item_favourites"
+            android:text="@string/item_recent"
             android:textSize="18sp" />
 
-        <ToggleButton
-            android:id="@+id/toggle_editFavourites"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
+        <ImageButton
+            android:id="@+id/imageButton_emptyRecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/icon_padding"
-            android:background="@drawable/edit_button"
-            android:textOff=""
-            android:textOn="" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_garbage" />
 
     </RelativeLayout>
 
