@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/archivo_narrow"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/button_padding"
+        android:paddingStart="@dimen/icon_padding"
         android:paddingEnd="0dp"
         android:text="Journal Name"
         android:textAllCaps="true"

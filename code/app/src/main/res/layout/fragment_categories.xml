@@ -39,12 +39,12 @@
             android:textSize="18sp" />
 
         <ToggleButton
-            android:id="@+id/toggle_categories"
+            android:id="@+id/toggle_categories_popup"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/button_padding"
+            android:layout_marginStart="@dimen/icon_padding"
             android:background="@drawable/category_button"
             android:textOff=""
             android:textOn="" />
@@ -54,16 +54,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_size"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/button_padding"
-            android:layout_marginEnd="@dimen/button_padding"
-            android:layout_toEndOf="@+id/toggle_categories"
+            android:layout_marginStart="@dimen/icon_padding"
+            android:layout_marginEnd="@dimen/icon_padding"
+            android:layout_toEndOf="@+id/toggle_categories_popup"
             android:background="@drawable/search_bar"
             android:hint="@string/search_journal"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLength="30"
-            android:paddingStart="@dimen/button_padding"
-            android:paddingEnd="@dimen/button_padding"
+            android:paddingStart="@dimen/icon_padding"
+            android:paddingEnd="@dimen/icon_padding"
             android:singleLine="true"
             android:visibility="gone" />
 
@@ -73,7 +73,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/button_padding"
+            android:layout_marginEnd="@dimen/icon_padding"
             android:background="@drawable/search_button"
             android:textOff=""
             android:textOn="" />

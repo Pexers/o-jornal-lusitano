@@ -37,10 +37,10 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     }
 
     private fun initPopupMenu() {
-        val popupMenu = PopupMenu(activity, binding.toggleCategories)
+        val popupMenu = PopupMenu(activity, binding.toggleCategoriesPopup)
         popupMenu.inflate(R.menu.menu_categories)
-        binding.toggleCategories.setOnCheckedChangeListener { _, isChecked -> if (isChecked) popupMenu.show() }
-        popupMenu.setOnDismissListener { binding.toggleCategories.isChecked = false }
+        binding.toggleCategoriesPopup.setOnCheckedChangeListener { _, isChecked -> if (isChecked) popupMenu.show() }
+        popupMenu.setOnDismissListener { binding.toggleCategoriesPopup.isChecked = false }
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.item_all -> updateCategory(Categories.ALL)
@@ -60,16 +60,12 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                 if (isChecked) {
                     visibility = View.VISIBLE
                     requestFocus()
-                    startAnimation(
-                        AnimationUtils.loadAnimation(context, R.anim.search_bar_in)
-                    )
+                    startAnimation(AnimationUtils.loadAnimation(context, R.anim.search_bar_in))
                 } else {
                     visibility = View.GONE
                     clearFocus()
                     text.clear()
-                    startAnimation(
-                        AnimationUtils.loadAnimation(context, R.anim.search_bar_out)
-                    )
+                    startAnimation(AnimationUtils.loadAnimation(context, R.anim.search_bar_out))
                 }
             }
         }

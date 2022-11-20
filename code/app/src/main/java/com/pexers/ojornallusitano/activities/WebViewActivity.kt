@@ -6,6 +6,7 @@ package com.pexers.ojornallusitano.activities
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.webkit.WebView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +23,25 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setToolbarListeners()
         val webView = binding.webView
         setupWebView(webView)
         webView.loadUrl(intent.getStringExtra("url")!!)
     }
-    
-    // TODO: buttons
+
+    private fun setToolbarListeners() {
+        binding.toolbarWebView.apply {
+            imageButtonGoBack.setOnClickListener { finish() }
+            imageButtonReload.setOnClickListener {
+                imageButtonReload.startAnimation(
+                    AnimationUtils.loadAnimation(
+                        applicationContext, R.anim.rotate_right
+                    )
+                )
+                binding.webView.reload()
+            }
+        }
+    }
 
     private fun setupWebView(webView: WebView) {
         webView.settings.apply {
@@ -43,15 +57,15 @@ class WebViewActivity : AppCompatActivity() {
         CookieManager.getInstance().acceptThirdPartyCookies(webView)*/
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding.webView.canGoBack()){
-                    binding.webView.goBack()  // Don't finish activity if can go back
-                }
-                else {
-                    finish()
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                }
+                if (binding.webView.canGoBack()) binding.webView.goBack()  // Don't finish activity if can go back
+                else finish()
             }
         })
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     inner class WebChromeClient : android.webkit.WebChromeClient() {

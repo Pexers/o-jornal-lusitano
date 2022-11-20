@@ -44,7 +44,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/button_padding"
+            android:layout_marginEnd="@dimen/icon_padding"
             android:background="@drawable/edit_button"
             android:textOff=""
             android:textOn="" />
