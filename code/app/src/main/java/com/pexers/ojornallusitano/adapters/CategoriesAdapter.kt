@@ -13,11 +13,13 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
-import com.pexers.ojornallusitano.utils.WebViewListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
+import com.pexers.ojornallusitano.utils.WebViewListener
 
 class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
+
+    override fun getData() = dataSet
 
     override fun setData(data: ArrayList<JournalData>) {
         dataSet = data
@@ -35,11 +37,11 @@ class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.textView_categoryJournal)
+            starToggle = view.findViewById(R.id.toggle_categoryJournalStar)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_categoryJournal)
             frameLayout.setOnClickListener {
                 mainActListener.switchToWebViewActivity(this@CategoriesAdapter.dataSet[adapterPosition])
             }
-            starToggle = view.findViewById(R.id.toggle_categoryJournalStar)
             starToggle.setOnCheckedChangeListener { _, isChecked ->
                 val journal = this@CategoriesAdapter.dataSet[adapterPosition]
                 if (isChecked) SharedPreferencesData.addFavourite(journal.name)

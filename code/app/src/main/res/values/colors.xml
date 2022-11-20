@@ -6,6 +6,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="argent">#BFBFBF</color>
     <color name="crayola">#A3B1C2</color>
+    <color name="crimson">#DC143C</color>
     <color name="charcoalLight">#3D4B5C</color>
     <color name="charcoal">#374353</color>
     <color name="gunmetal">#29323D</color>
@@ -15,4 +16,5 @@
     <color name="eerieBlack">#1A1A1A</color>
     <color name="chineseBlack">#111111</color>
     <color name="black">#FF000000</color>
+
 </resources>

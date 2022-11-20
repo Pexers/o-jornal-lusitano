@@ -8,19 +8,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.utils.SharedPreferencesData
 import com.pexers.ojornallusitano.utils.WebViewListener
 
 class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
     RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(), JournalsAdapter {
 
+    override fun getData() = dataSet
+
     override fun setData(data: ArrayList<JournalData>) {
         dataSet = data
         notifyDataSetChanged()
     }
+
+    var isEditing: Boolean = false
 
     /**
      * Provide a reference to the type of views that you are using
@@ -36,13 +44,41 @@ class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener
             frameLayout.setOnClickListener {
                 mainActListener.switchToWebViewActivity(this@FavouritesAdapter.dataSet[adapterPosition])
             }
+            if (isEditing) {
+                val removeFavourite =
+                    view.findViewById<ImageButton>(R.id.imageButton_removeFavourite)
+                val dialogBuilder = AlertDialog.Builder(frameLayout.context)
+                removeFavourite.setOnClickListener { dialogBuilder.show() }
+                dialogBuilder.apply {
+                    setMessage(R.string.remove_favourite_message)
+                    setPositiveButton(R.string.yes) { _, _ ->
+                        SharedPreferencesData.removeFavourite(this@FavouritesAdapter.dataSet[adapterPosition].name)
+                        dataSet.removeAt(adapterPosition)
+                        notifyItemRemoved(adapterPosition)  // No need to notify the all dataset
+                    }
+                    setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+                    create()
+                }
+            } else {
+                val threeDots = view.findViewById<ImageButton>(R.id.imageButton_threeDots)
+                val popupMenu = PopupMenu(frameLayout.context, threeDots)
+                popupMenu.inflate(R.menu.menu_three_dots)
+                threeDots.setOnClickListener { popupMenu.show() }
+                popupMenu.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        else -> false
+                    }
+                }
+            }
         }
     }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
+        val view = if (isEditing) LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_favourites_edit, viewGroup, false)
+        else LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_favourites, viewGroup, false)
         return ViewHolder(view)
     }

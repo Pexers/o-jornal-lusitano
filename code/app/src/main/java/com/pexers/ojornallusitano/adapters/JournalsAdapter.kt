@@ -8,6 +8,8 @@ import com.pexers.ojornallusitano.utils.JournalData
 
 interface JournalsAdapter {
 
+    fun getData(): ArrayList<JournalData>
+
     fun setData(data: ArrayList<JournalData>)
 
 }

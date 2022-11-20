@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginStart="@dimen/icon_padding"
+        android:layout_marginStart="@dimen/toolbar_icon_padding"
         android:background="@android:color/transparent"
         android:src="?actionModeCloseDrawable" />
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/icon_padding"
+        android:layout_marginEnd="@dimen/toolbar_icon_padding"
         android:background="@android:color/transparent"
         android:interpolator="@android:anim/linear_interpolator"
         android:src="@drawable/ic_reload" />

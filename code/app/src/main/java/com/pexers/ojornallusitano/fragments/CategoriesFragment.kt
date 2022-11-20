@@ -4,11 +4,13 @@
 
 package com.pexers.ojornallusitano.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -76,12 +78,23 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                 }
             }
         }
-        binding.searchBar.addTextChangedListener {
-            mainAct.updateRecyclerView(
-                mainAct.filterByInput(
-                    it.toString(), currentCategoryJournals
-                ), true
-            )
+        val inputManager =
+            mainAct.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        binding.searchBar.apply {
+            // Filter current category journals by name
+            addTextChangedListener {
+                mainAct.updateRecyclerView(
+                    mainAct.filterByInput(it.toString(), currentCategoryJournals), true
+                )
+            }
+            // Open input window when search bar is focused
+            setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    inputManager.showSoftInput(
+                        binding.searchBar, InputMethodManager.SHOW_IMPLICIT
+                    )
+                } else inputManager.hideSoftInputFromWindow(binding.searchBar.windowToken, 0)
+            }
         }
     }
 

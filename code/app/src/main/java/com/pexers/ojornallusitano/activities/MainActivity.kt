@@ -69,7 +69,13 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         val recyclerView = binding.recyclerViewMain
         (recyclerView.adapter as JournalsAdapter).setData(dataSet)
         if (!skipAnimation) recyclerView.startLayoutAnimation()
-        checkEmptyRecyclerView(dataSet)
+        checkEmptyRecyclerView()
+    }
+
+    fun setFavouritesEditState(isEditing: Boolean) {
+        favouritesAdapt.isEditing = isEditing
+        // Force onCreateViewHolder to be invoked
+        binding.recyclerViewMain.adapter = favouritesAdapt
     }
 
     private fun updateFragment(fragment: Fragment) {
@@ -169,7 +175,8 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         }
     }
 
-    private fun checkEmptyRecyclerView(dataSet: ArrayList<JournalData>) {
+    fun checkEmptyRecyclerView() {
+        val dataSet = (binding.recyclerViewMain.adapter as JournalsAdapter).getData()
         if (dataSet.isEmpty()) {
             binding.textViewEmptyRecyclerView.visibility = View.VISIBLE
         } else binding.textViewEmptyRecyclerView.visibility = View.GONE
