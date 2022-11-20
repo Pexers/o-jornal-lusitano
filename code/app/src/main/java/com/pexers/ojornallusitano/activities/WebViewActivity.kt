@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/19/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.activities
@@ -57,12 +57,13 @@ class WebViewActivity : AppCompatActivity() {
         CookieManager.getInstance().acceptThirdPartyCookies(webView)*/
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding.webView.canGoBack()) binding.webView.goBack()  // Don't finish activity if can go back
-                else finish()
+                if (binding.webView.canGoBack()) binding.webView.goBack()
+                else finish()  // Only finish activity when can't go back
             }
         })
     }
 
+    // Override to add transition animation
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
