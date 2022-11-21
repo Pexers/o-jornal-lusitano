@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.fragments
@@ -50,15 +50,13 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         binding.toggleCategoriesPopup.setOnCheckedChangeListener { _, isChecked -> if (isChecked) popupMenu.show() }
         popupMenu.setOnDismissListener { binding.toggleCategoriesPopup.isChecked = false }
         popupMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.item_all -> updateCategory(Categories.ALL)
-                R.id.item_economy -> updateCategory(Categories.ECONOMY_POLITICS)
-                R.id.item_general -> updateCategory(Categories.GENERAL)
-                R.id.item_fashion -> updateCategory(Categories.FASHION)
-                R.id.item_sports -> updateCategory(Categories.SPORTS)
-                R.id.item_technology -> updateCategory(Categories.TECHNOLOGY)
+            val categoryClicked =
+                Categories.values().find { c -> getString(c.displayName) == it.title.toString() }
+            if (categoryClicked == null) false
+            else {
+                updateCategory(categoryClicked)
+                true
             }
-            true
         }
     }
 

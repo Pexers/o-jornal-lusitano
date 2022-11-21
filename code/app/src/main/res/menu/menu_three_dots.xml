@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 8/3/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/browser_favourite_item"
+        android:id="@+id/browse_journal"
         android:title="@string/browse_journal" />
     <item
         android:id="@+id/share_journal"

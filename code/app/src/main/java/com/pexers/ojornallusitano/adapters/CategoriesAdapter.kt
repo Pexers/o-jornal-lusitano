@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.adapters
@@ -13,10 +13,10 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
-import com.pexers.ojornallusitano.utils.WebViewListener
 
-class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
+class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MainActivityListener) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun getData() = dataSet

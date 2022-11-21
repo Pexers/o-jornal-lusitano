@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.activities
@@ -28,10 +28,10 @@ import com.pexers.ojornallusitano.fragments.RecentFragment
 import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
 import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString
+import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
-import com.pexers.ojornallusitano.utils.WebViewListener
 
-class MainActivity : AppCompatActivity(), WebViewListener {
+class MainActivity : AppCompatActivity(), MainActivityListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var journals: ArrayList<JournalData>
@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         initRecyclerView(binding.recyclerViewMain)
     }
 
+    override fun startNewActivity(intent: Intent) {
+        startActivity(intent)
+    }
+
     override fun switchToWebViewActivity(journal: JournalData) {
         addToRecentQueue(journal)
         val webViewActivity = Intent(this, WebViewActivity::class.java)
@@ -64,6 +68,7 @@ class MainActivity : AppCompatActivity(), WebViewListener {
         startActivity(webViewActivity)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
+
 
     fun updateRecyclerView(dataSet: ArrayList<JournalData>, skipAnimation: Boolean = false) {
         val recyclerView = binding.recyclerViewMain

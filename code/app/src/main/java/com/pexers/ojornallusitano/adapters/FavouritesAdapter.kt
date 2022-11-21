@@ -1,9 +1,11 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +17,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
-import com.pexers.ojornallusitano.utils.WebViewListener
 
-class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: WebViewListener) :
-    RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(), JournalsAdapter {
+class FavouritesAdapter(
+    var dataSet: ArrayList<JournalData>, val mainActListener: MainActivityListener
+) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun getData() = dataSet
 
@@ -65,12 +68,37 @@ class FavouritesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener
                 popupMenu.inflate(R.menu.menu_three_dots)
                 threeDots.setOnClickListener { popupMenu.show() }
                 popupMenu.setOnMenuItemClickListener {
+                    val journalUrl = this@FavouritesAdapter.dataSet[adapterPosition].url
                     when (it.itemId) {
+                        R.id.browse_journal -> {
+                            browseUrl(journalUrl)
+                            true
+                        }
+                        R.id.share_journal -> {
+                            shareUrl(journalUrl)
+                            true
+                        }
                         else -> false
                     }
                 }
             }
         }
+    }
+
+    private fun browseUrl(journalUrl: String) {
+        val openURL = Intent(Intent.ACTION_VIEW)
+        openURL.data = Uri.parse(journalUrl)
+        mainActListener.startNewActivity(openURL)
+    }
+
+    private fun shareUrl(journalUrl: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, journalUrl)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        mainActListener.startNewActivity(shareIntent)
     }
 
     // Create new views (invoked by the layout manager)
