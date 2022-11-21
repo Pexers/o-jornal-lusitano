@@ -6,7 +6,7 @@ This repository contains the app's source code, written in Kotlin for Android. D
 For more information please visit our [_website_](https://sites.google.com/view/o-jornal-lusitano/home).
 
 
-# App screenshots 📱
+## App screenshots 📱
 Access journal|Access journal (_dark mode_)|In-app webpage|Navigation drawer|
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------: |
 <img src="https://user-images.githubusercontent.com/47757441/203153660-dfe3edd0-6dad-4d12-9697-19fe11339eed.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153847-b5e1b650-0ec1-4fa1-97f1-f1ab74be4d4f.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153706-a0bcb242-0435-400d-9246-6733b17b09bb.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153724-a95ad5cd-fea5-47c3-876b-beb59f09eb1d.jpg" width="170">
