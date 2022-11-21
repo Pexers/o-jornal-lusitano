@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+  -->
+
+<resources>
+    <string name="app_name">O Jornal Lusitano</string>
+    <string name="about_description">O aplicativo foi desenvolvido para uso pessoal, por essa razão, o mesmo não deve ser copiado, distribuído, vendido ou licenciado por uma outra entidade diferente daquela que o desenvolveu. O aplicativo proporciona um acesso rápido aos jornais portugueses mais populares da atualidade, no entanto, não somos responsáveis pela veracidade dos seus conteúdos ou possíveis danos causados pelos mesmos.</string>
+    <string name="browse_journal">Abrir no browser</string>
+    <string name="category_all">Todos</string>
+    <string name="category_economy_politics">Economia/Política</string>
+    <string name="category_fashion">Moda</string>
+    <string name="category_general">Geral</string>
+    <string name="category_sports">Desporto</string>
+    <string name="category_technology">Tecnologia</string>
+    <string name="contact_us">Para alguma informação adicional ou sugestão por favor contacte-nos em:</string>
+    <string name="empty">(Vazio)</string>
+    <string name="item_about">Sobre</string>
+    <string name="item_categories">Categorias</string>
+    <string name="item_favourites">Favoritos</string>
+    <string name="item_recent">Recente</string>
+    <string name="our_website">O nosso website:</string>
+    <string name="remove_favourite_message">Tem a certeza que pretende remover este item dos favoritos?</string>
+    <string name="search_journal">Pesquisa pelo jornal</string>
+    <string name="share_journal">Partilhar link</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="you_are_offline">Estás offline</string>
+    <string name="no">Não</string>
+    <string name="yes">Sim</string>
+</resources>

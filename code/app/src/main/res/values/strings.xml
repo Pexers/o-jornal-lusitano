@@ -3,7 +3,7 @@
   -->
 
 <resources>
-    <string name="about_description">This application was developed for personal use, for that reason, it cannot be copied, modified, adapted, distributed, sold or licenced by another entity different from the one that developed it. The application provides a quick and easy access to popular Portuguese newspapers, however, we are not responsible for the veracity of the contents displayed or for any possible damage caused by it.</string>
+    <string name="about_description">This app was developed for personal use, for that reason, it cannot be copied, modified, adapted, distributed, sold or licenced by another entity different from the one that developed it. The app provides a quick and easy access to popular Portuguese newspapers, however, we are not responsible for the veracity of the contents displayed or for any possible damage caused by it.</string>
     <string name="app_name" translatable="false">O Jornal Lusitano</string>
     <string name="app_website" translatable="false">https://sites.google.com/view/o-jornal-lusitano/home</string>
     <string name="app_email" translatable="false">ojornallusitano@outlook.com</string>
@@ -15,8 +15,8 @@
     <string name="category_sports">Sports</string>
     <string name="category_technology">Technology</string>
     <string name="contact_us">For any additional information or suggestion please contact us at:</string>
-    <string name="drawer_open">Drawer Opened</string>
-    <string name="drawer_close">Drawer Closed</string>
+    <string name="drawer_open" translatable="false">Drawer Opened</string>
+    <string name="drawer_close" translatable="false">Drawer Closed</string>
     <string name="empty">(Empty)</string>
     <string name="item_about">About</string>
     <string name="item_categories">Categories</string>
