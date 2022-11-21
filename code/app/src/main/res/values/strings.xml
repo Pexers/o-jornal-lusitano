@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
-    <string name="app_name">O Jornal Lusitano</string>
+    <string name="about_description">This application was developed for personal use, for that reason, it cannot be copied, modified, adapted, distributed, sold or licenced by another entity different from the one that developed it. The application provides a quick and easy access to popular Portuguese newspapers, however, we are not responsible for the veracity of the contents displayed or for any possible damage caused by it.</string>
+    <string name="app_name" translatable="false">O Jornal Lusitano</string>
+    <string name="app_website" translatable="false">https://sites.google.com/view/o-jornal-lusitano/home</string>
+    <string name="app_email" translatable="false">ojornallusitano@outlook.com</string>
     <string name="browse_journal">Open in browser</string>
     <string name="category_all">All</string>
     <string name="category_economy_politics">Economy/Politics</string>
@@ -11,6 +14,7 @@
     <string name="category_general">General</string>
     <string name="category_sports">Sports</string>
     <string name="category_technology">Technology</string>
+    <string name="contact_us">For any additional information or suggestion please contact us at:</string>
     <string name="drawer_open">Drawer Opened</string>
     <string name="drawer_close">Drawer Closed</string>
     <string name="empty">(Empty)</string>
@@ -19,8 +23,10 @@
     <string name="item_favourites">Favourites</string>
     <string name="item_recent">Recent</string>
     <string name="no">No</string>
+    <string name="our_website">Our website:</string>
     <string name="remove_favourite_message">Are you sure you want to remove this item from favourites?</string>
     <string name="search_journal">Search journal</string>
     <string name="share_journal">Share link</string>
+    <string name="version" translatable="false">Version: 1.2.0</string>
     <string name="yes">Yes</string>
 </resources>

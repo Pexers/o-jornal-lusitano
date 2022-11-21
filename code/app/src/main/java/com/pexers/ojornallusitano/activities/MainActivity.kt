@@ -60,12 +60,18 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         startActivity(intent)
     }
 
-    override fun switchToWebViewActivity(journal: JournalData) {
+    override fun startWebViewActivity(journal: JournalData) {
         addToRecentQueue(journal)
         val webViewActivity = Intent(this, WebViewActivity::class.java)
         // Send URL as an intent parameter
         webViewActivity.putExtra("url", journal.url)
         startActivity(webViewActivity)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun startAboutActivity() {
+        val aboutActivity = Intent(this, AboutActivity::class.java)
+        startActivity(aboutActivity)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
@@ -128,7 +134,7 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         val drawerLayout = binding.drawerLayoutMain
         var currentItemId: Int = R.id.item_all
         binding.navigationView.setNavigationItemSelectedListener {
-            if (it.itemId == currentItemId) {
+            if (it.itemId == currentItemId && it.itemId != R.id.item_about) {
                 closeDrawer(drawerLayout)
                 false
             } else {
@@ -156,6 +162,7 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
                         true
                     }
                     R.id.item_about -> {
+                        startAboutActivity()
                         closeDrawer(drawerLayout)
                         true
                     }

@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.activities
@@ -23,10 +23,18 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setToolbarListeners()
+        val journalUrl = intent.getStringExtra("url")!!
         val webView = binding.webView
+        setToolbarListeners()
         setupWebView(webView)
-        webView.loadUrl(intent.getStringExtra("url")!!)
+        binding.textJournalUrl.text = journalUrl
+        webView.loadUrl(journalUrl)
+    }
+
+    // Override to add transition animation
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setToolbarListeners() {
@@ -61,12 +69,6 @@ class WebViewActivity : AppCompatActivity() {
                 else finish()  // Only finish activity when can't go back
             }
         })
-    }
-
-    // Override to add transition animation
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     inner class WebChromeClient : android.webkit.WebChromeClient() {

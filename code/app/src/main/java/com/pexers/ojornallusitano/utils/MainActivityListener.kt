@@ -10,6 +10,6 @@ interface MainActivityListener {
 
     fun startNewActivity(intent: Intent)
 
-    fun switchToWebViewActivity(journal: JournalData)
+    fun startWebViewActivity(journal: JournalData)
 
 }

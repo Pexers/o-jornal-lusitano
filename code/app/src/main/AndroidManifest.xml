@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +22,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value=""/>-->
         <activity android:name=".activities.WebViewActivity" />
+        <activity android:name=".activities.AboutActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

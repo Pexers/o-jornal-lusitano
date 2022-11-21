@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
@@ -18,9 +18,14 @@
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:textColorSecondary">@color/darkLiver</item>
         <item name="colorAccent">@color/charcoal</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:colorControlHighlight">@color/crayola</item>  <!-- Button ripple -->
         <item name="android:listDivider">@color/argent</item>  <!-- NavigationView divider -->
+    </style>
+
+    <style name="FavouriteEditDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

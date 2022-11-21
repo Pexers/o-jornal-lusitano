@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.OJornalLusitano" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.OJornalLusitanoo" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/eerieBlack</item>
         <item name="colorPrimaryVariant">@color/chineseBlack</item>
@@ -18,7 +18,12 @@
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/eerieBlackLight</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/argent</item>
         <item name="colorAccent">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="FavouriteEditDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

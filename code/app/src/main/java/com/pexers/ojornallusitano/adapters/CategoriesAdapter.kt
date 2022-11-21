@@ -16,7 +16,10 @@ import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
-class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener: MainActivityListener) :
+class CategoriesAdapter(
+    var dataSet: ArrayList<JournalData>,
+    val mainActListener: MainActivityListener
+) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun getData() = dataSet
@@ -40,7 +43,7 @@ class CategoriesAdapter(var dataSet: ArrayList<JournalData>, val mainActListener
             starToggle = view.findViewById(R.id.toggle_categoryJournalStar)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_categoryJournal)
             frameLayout.setOnClickListener {
-                mainActListener.switchToWebViewActivity(this@CategoriesAdapter.dataSet[adapterPosition])
+                mainActListener.startWebViewActivity(this@CategoriesAdapter.dataSet[adapterPosition])
             }
             starToggle.setOnCheckedChangeListener { _, isChecked ->
                 val journal = this@CategoriesAdapter.dataSet[adapterPosition]

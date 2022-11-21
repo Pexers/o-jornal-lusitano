@@ -65,6 +65,8 @@
             android:paddingStart="@dimen/icon_padding"
             android:paddingEnd="@dimen/icon_padding"
             android:singleLine="true"
+            android:textColor="?android:textColor"
+            android:textColorHint="?android:textColorSecondary"
             android:visibility="gone" />
 
         <ToggleButton

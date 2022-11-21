@@ -45,12 +45,13 @@ class FavouritesAdapter(
             textView = view.findViewById(R.id.textView_favouriteJournal)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_favouriteJournal)
             frameLayout.setOnClickListener {
-                mainActListener.switchToWebViewActivity(this@FavouritesAdapter.dataSet[adapterPosition])
+                mainActListener.startWebViewActivity(this@FavouritesAdapter.dataSet[adapterPosition])
             }
             if (isEditing) {
                 val removeFavourite =
                     view.findViewById<ImageButton>(R.id.imageButton_removeFavourite)
-                val dialogBuilder = AlertDialog.Builder(frameLayout.context)
+                val dialogBuilder =
+                    AlertDialog.Builder(frameLayout.context, R.style.FavouriteEditDialog)
                 removeFavourite.setOnClickListener { dialogBuilder.show() }
                 dialogBuilder.apply {
                     setMessage(R.string.remove_favourite_message)
