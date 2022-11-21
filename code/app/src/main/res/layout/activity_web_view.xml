@@ -49,13 +49,20 @@
             android:progress="25"
             android:progressDrawable="@drawable/progress_bar" />
 
-        <!--
         <RelativeLayout
-            android:id="@+id/layout_noInternet"
+            android:id="@+id/relativeLayout_noInternet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_backButton">
+            android:layout_below="@+id/toolbar_webView"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_above="@+id/text_noInternetWarning"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_no_internet" />
 
             <TextView
                 android:id="@+id/text_noInternetWarning"
@@ -63,30 +70,23 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/no_internet_connection"
-                android:textColor="@android:color/black"
-                android:textSize="25sp" />
-
-            <ImageView
-                android:id="@+id/image_noInternet"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_above="@+id/text_noInternetWarning"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/no_internet_connection" />
+                android:text="@string/you_are_offline"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button_retryConnection"
+                android:id="@+id/button_tryAgain"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:layout_below="@+id/text_noInternetWarning"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/button_border"
-                android:text="@string/retry_internet_connection"
-                android:textColor="@android:color/white"
-                android:textSize="13sp" />
-        </RelativeLayout>-->
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_button"
+                android:text="@string/try_again"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -27,6 +27,8 @@
     <string name="remove_favourite_message">Are you sure you want to remove this item from favourites?</string>
     <string name="search_journal">Search journal</string>
     <string name="share_journal">Share link</string>
+    <string name="try_again">Try again</string>
     <string name="version" translatable="false">Version: 1.2.0</string>
     <string name="yes">Yes</string>
+    <string name="you_are_offline">You\'re offline</string>
 </resources>

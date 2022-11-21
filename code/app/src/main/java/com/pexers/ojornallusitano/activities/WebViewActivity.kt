@@ -4,6 +4,11 @@
 
 package com.pexers.ojornallusitano.activities
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -47,7 +52,12 @@ class WebViewActivity : AppCompatActivity() {
                     )
                 )
                 binding.webView.reload()
+                checkInternetConnection()
             }
+        }
+        binding.buttonTryAgain.setOnClickListener {
+            binding.webView.reload()
+            checkInternetConnection()
         }
     }
 
@@ -61,8 +71,6 @@ class WebViewActivity : AppCompatActivity() {
         }
         webView.webViewClient = webViewClient
         webView.webChromeClient = webChromeClient
-        /*CookieManager.getInstance().acceptCookie()
-        CookieManager.getInstance().acceptThirdPartyCookies(webView)*/
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (binding.webView.canGoBack()) binding.webView.goBack()
@@ -79,10 +87,35 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     inner class WebViewClient : android.webkit.WebViewClient() {
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+            super.onPageStarted(view, url, favicon)
+            checkInternetConnection()
+        }
+
         // ProgressBar will disappear once page is loaded
         override fun onPageFinished(view: WebView, url: String) {
             super.onPageFinished(view, url)
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isConnectedToNetwork()) binding.relativeLayoutNoInternet.visibility = View.GONE
+        else binding.relativeLayoutNoInternet.visibility = View.VISIBLE
+    }
+
+    private fun isConnectedToNetwork(): Boolean {
+        val connectManager =
+            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true  // Web page won't be available regardless
+        val activeNetwork =
+            connectManager.getNetworkCapabilities(connectManager.activeNetwork) ?: return false
+        return when {
+            // Indicates this network uses a Wi-Fi transport, or WiFi has network connectivity
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            // Indicates this network uses a Cellular transport or Cellular has network connectivity
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            else -> false
         }
     }
 
