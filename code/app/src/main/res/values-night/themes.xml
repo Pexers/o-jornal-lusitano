@@ -4,7 +4,7 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.OJornalLusitanoo" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.OJornalLusitano" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/eerieBlack</item>
         <item name="colorPrimaryVariant">@color/chineseBlack</item>

@@ -36,6 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/frameLayout_main"
                 android:layoutAnimation="@anim/layout_fade_in"
+                android:layout_above="@id/adView_main"
                 android:scrollbars="vertical" />
 
             <TextView
@@ -50,14 +51,14 @@
                 android:textSize="16sp"
                 android:visibility="gone" />
 
-            <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adView"
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 ads:adSize="BANNER"
-                ads:adUnitId=""></com.google.android.gms.ads.AdView>-->
+                ads:adUnitId="ca-app-pub-7607675059457998/7185104033" />
         </RelativeLayout>
 
     </RelativeLayout>

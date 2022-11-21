@@ -18,9 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OJornalLusitano"
         tools:targetApi="31">
-        <!--<meta-data
+        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value=""/>-->
+            android:value="ca-app-pub-7607675059457998~1194410757"/>
         <activity android:name=".activities.WebViewActivity" />
         <activity android:name=".activities.AboutActivity" />
         <activity

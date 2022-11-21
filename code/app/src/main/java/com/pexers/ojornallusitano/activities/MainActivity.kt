@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.adapters.CategoriesAdapter
 import com.pexers.ojornallusitano.adapters.FavouritesAdapter
@@ -54,6 +56,12 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         supportActionBar!!.setDisplayShowTitleEnabled(false)  // Remove title from ActionBar
         setupNav(toolbar, binding.recyclerViewMain)
         initRecyclerView(binding.recyclerViewMain)
+        initAdView()
+    }
+
+    private fun initAdView() {
+        MobileAds.initialize(this) {}
+        binding.adViewMain.loadAd(AdRequest.Builder().build())
     }
 
     override fun startNewActivity(intent: Intent) {
@@ -74,7 +82,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         startActivity(aboutActivity)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
-
 
     fun updateRecyclerView(dataSet: ArrayList<JournalData>, skipAnimation: Boolean = false) {
         val recyclerView = binding.recyclerViewMain
