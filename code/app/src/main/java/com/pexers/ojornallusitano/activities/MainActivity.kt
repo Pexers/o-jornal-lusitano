@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/22/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.activities
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.pexers.ojornallusitano.R
@@ -48,20 +49,17 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SharedPreferencesData.init(applicationContext)  // Load shared preferences
+        // Load shared preferences
+        SharedPreferencesData.init(applicationContext)
+        val startOnFavourites = SharedPreferencesData.startsOnFavourites()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val toolbar = binding.toolbarMain.toolbarNav
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)  // Remove title from ActionBar
-        setupNav(toolbar, binding.recyclerViewMain)
-        initRecyclerView(binding.recyclerViewMain)
+        setupNav(toolbar, startOnFavourites)
+        initRecyclerView(binding.recyclerViewMain, startOnFavourites)
         initAdView()
-    }
-
-    private fun initAdView() {
-        MobileAds.initialize(this) {}
-        binding.adViewMain.loadAd(AdRequest.Builder().build())
     }
 
     override fun startNewActivity(intent: Intent) {
@@ -75,6 +73,34 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         webViewActivity.putExtra("url", journal.url)
         startActivity(webViewActivity)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun initAdView() {
+        MobileAds.initialize(this) {}
+        binding.adViewMain.loadAd(AdRequest.Builder().build())
+    }
+
+    private fun initRecyclerView(recyclerView: RecyclerView, startOnFavourites: Boolean) {
+        val journalsJson = inputStreamToString(application.assets.open("journals.json"))
+        journals = getJournalsData(journalsJson).journals
+        recyclerView.apply {
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+            layoutManager = LinearLayoutManager(context)
+        }
+        if (startOnFavourites) switchFragment(favouritesFrag, favouritesAdapt, filterByFavourites())
+        else switchFragment(categoriesFrag, categoriesAdapt, journals)
+    }
+
+    private fun switchFragment(
+        fragment: Fragment, adapter: Adapter<*>, journals: ArrayList<JournalData>
+    ) {
+        // Update fragment
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frameLayout_main, fragment)
+            commit()
+        }
+        binding.recyclerViewMain.adapter = adapter
+        updateRecyclerView(journals)
     }
 
     private fun startAboutActivity() {
@@ -96,13 +122,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         binding.recyclerViewMain.adapter = favouritesAdapt
     }
 
-    private fun updateFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameLayout_main, fragment)
-            commit()
-        }
-    }
-
     fun filterByCategory(category: Categories) =
         if (category == Categories.ALL) journals else journals.filter { j -> j.category.name == category.name } as ArrayList<JournalData>
 
@@ -119,27 +138,14 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     private fun filterByFavourites() =
         journals.filter { j -> SharedPreferencesData.favourites!!.contains(j.name) } as ArrayList<JournalData>
 
-    private fun initRecyclerView(recyclerView: RecyclerView) {
-        val journalsJson = inputStreamToString(application.assets.open("journals.json"))
-        journals = getJournalsData(journalsJson).journals
-        recyclerView.apply {
-            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-            layoutManager = LinearLayoutManager(context)
-        }
-        // TODO: Set last adapter used by user
-        updateFragment(categoriesFrag)
-        recyclerView.adapter = categoriesAdapt
-        updateRecyclerView(journals)
-    }
-
-    private fun setupNav(toolbar: Toolbar, recyclerView: RecyclerView) {
+    private fun setupNav(toolbar: Toolbar, startOnFavourites: Boolean) {
         // Init nav toggle
         ActionBarDrawerToggle(
             this, binding.drawerLayoutMain, toolbar, R.string.drawer_open, R.string.drawer_close
         ).syncState()
         // Setup on item selected listener
         val drawerLayout = binding.drawerLayoutMain
-        var currentItemId: Int = R.id.item_all
+        var currentItemId: Int = if (startOnFavourites) R.id.item_favourites else R.id.item_all
         binding.navigationView.setNavigationItemSelectedListener {
             if (it.itemId == currentItemId && it.itemId != R.id.item_about) {
                 closeDrawer(drawerLayout)
@@ -148,23 +154,19 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
                 currentItemId = it.itemId
                 when (it.itemId) {
                     R.id.item_all -> {
-                        updateFragment(categoriesFrag)
-                        recyclerView.adapter = categoriesAdapt
-                        updateRecyclerView(journals)
+                        switchFragment(categoriesFrag, categoriesAdapt, journals)
+                        SharedPreferencesData.setStartOnFavourites(false)
                         closeDrawer(drawerLayout)
                         true
                     }
                     R.id.item_favourites -> {
-                        updateFragment(favouritesFrag)
-                        recyclerView.adapter = favouritesAdapt
-                        updateRecyclerView(filterByFavourites())
+                        switchFragment(favouritesFrag, favouritesAdapt, filterByFavourites())
+                        SharedPreferencesData.setStartOnFavourites(true)
                         closeDrawer(drawerLayout)
                         true
                     }
                     R.id.item_recent -> {
-                        updateFragment(recentFrag)
-                        recyclerView.adapter = categoriesAdapt
-                        updateRecyclerView(recentJournals)
+                        switchFragment(recentFrag, categoriesAdapt, recentJournals)
                         closeDrawer(drawerLayout)
                         true
                     }

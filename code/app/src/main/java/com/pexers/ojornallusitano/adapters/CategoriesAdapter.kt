@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/22/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.adapters
@@ -17,10 +17,8 @@ import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
 class CategoriesAdapter(
-    var dataSet: ArrayList<JournalData>,
-    val mainActListener: MainActivityListener
-) :
-    RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
+    var dataSet: ArrayList<JournalData>, val mainActListener: MainActivityListener
+) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>(), JournalsAdapter {
 
     override fun getData() = dataSet
 

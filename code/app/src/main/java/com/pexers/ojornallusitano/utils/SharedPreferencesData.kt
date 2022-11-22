@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/22/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.utils
@@ -13,9 +13,13 @@ object SharedPreferencesData {
     private var sharedPreferences: SharedPreferences? = null
     var favourites: MutableSet<String>? = null
 
+    private const val dataFile = "dataFile"
+    private const val favouritesPref = "favouritesSet"
+    private const val startOnFavouritesPref = "startOnFavourites"
+
     fun init(context: Context) {
         if (sharedPreferences == null) {
-            sharedPreferences = context.getSharedPreferences("dataFile", Context.MODE_PRIVATE)
+            sharedPreferences = context.getSharedPreferences(dataFile, Context.MODE_PRIVATE)
             favourites =
                 sharedPreferences!!.getStringSet("favouritesSet", emptySet())!!.toMutableSet()
             editor = sharedPreferences!!.edit()
@@ -25,26 +29,18 @@ object SharedPreferencesData {
 
     fun addFavourite(journalName: String) {
         favourites!!.add(journalName)
-        editor.putStringSet("favouritesSet", favourites).apply()
+        editor.putStringSet(favouritesPref, favourites).apply()
     }
 
     fun removeFavourite(journalName: String) {
         favourites!!.remove(journalName)
-        editor.putStringSet("favouritesSet", favourites).apply()
-        println(favourites)
+        editor.putStringSet(favouritesPref, favourites).apply()
     }
 
-    fun setToDisplayFavourites(state: Boolean) {
-        editor.putBoolean("toDisplayFavourites", state).apply()
+    fun setStartOnFavourites(flag: Boolean) {
+        editor.putBoolean(startOnFavouritesPref, flag).apply()
     }
 
-    /*
-        fun getSavedCategory(): Categories {
-            return if (toDisplayFavourites())
-                Categories.FAVOURITES
-            else Categories.ALL
-        }
-    */
-    private fun toDisplayFavourites() = sharedPreferences!!.getBoolean("toDisplayFavourites", false)
+    fun startsOnFavourites() = sharedPreferences!!.getBoolean(startOnFavouritesPref, false)
 
 }
