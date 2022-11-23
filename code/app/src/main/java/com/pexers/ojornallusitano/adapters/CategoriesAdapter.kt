@@ -12,8 +12,8 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pexers.ojornallusitano.R
+import com.pexers.ojornallusitano.activities.MainActivityListener
 import com.pexers.ojornallusitano.utils.JournalData
-import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
 class CategoriesAdapter(

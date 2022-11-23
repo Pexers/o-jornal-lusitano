@@ -1,10 +1,11 @@
 /*
- * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/23/2022, Pexers (https://github.com/Pexers)
  */
 
-package com.pexers.ojornallusitano.utils
+package com.pexers.ojornallusitano.activities
 
 import android.content.Intent
+import com.pexers.ojornallusitano.utils.JournalData
 
 interface MainActivityListener {
 

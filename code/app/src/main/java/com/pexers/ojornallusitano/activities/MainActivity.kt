@@ -31,7 +31,6 @@ import com.pexers.ojornallusitano.fragments.RecentFragment
 import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
 import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString
-import com.pexers.ojornallusitano.utils.MainActivityListener
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
 
 class MainActivity : AppCompatActivity(), MainActivityListener {
@@ -130,13 +129,13 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
             j.name.trim().contains(input.trim(), ignoreCase = true)
         } as ArrayList<JournalData>
 
+    private fun filterByFavourites() =
+        journals.filter { j -> SharedPreferencesData.favourites!!.contains(j.name) } as ArrayList<JournalData>
+
     fun clearRecentQueue() {
         recentJournals.clear()
         updateRecyclerView(arrayListOf(), true)
     }
-
-    private fun filterByFavourites() =
-        journals.filter { j -> SharedPreferencesData.favourites!!.contains(j.name) } as ArrayList<JournalData>
 
     private fun setupNav(toolbar: Toolbar, startOnFavourites: Boolean) {
         // Init nav toggle
