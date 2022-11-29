@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.fragments
@@ -14,6 +14,7 @@ import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentRecentBinding
 
 class RecentFragment : Fragment(R.layout.fragment_recent) {
+
     private var _binding: FragmentRecentBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.

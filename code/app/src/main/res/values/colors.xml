@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
@@ -16,5 +16,4 @@
     <color name="eerieBlack">#1A1A1A</color>
     <color name="chineseBlack">#111111</color>
     <color name="black">#FF000000</color>
-
 </resources>

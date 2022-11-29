@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/22/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.activities
@@ -24,10 +24,10 @@ import com.pexers.ojornallusitano.adapters.CategoriesAdapter
 import com.pexers.ojornallusitano.adapters.FavouritesAdapter
 import com.pexers.ojornallusitano.adapters.JournalsAdapter
 import com.pexers.ojornallusitano.databinding.ActivityMainBinding
-import com.pexers.ojornallusitano.fragments.Categories
 import com.pexers.ojornallusitano.fragments.CategoriesFragment
 import com.pexers.ojornallusitano.fragments.FavouritesFragment
 import com.pexers.ojornallusitano.fragments.RecentFragment
+import com.pexers.ojornallusitano.utils.Categories
 import com.pexers.ojornallusitano.utils.JournalData
 import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
 import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString

@@ -1,15 +1,17 @@
 /*
- * Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.utils
 
-import com.pexers.ojornallusitano.fragments.Categories
+import androidx.annotation.Keep
 
+@Keep
 data class JournalsData(
     val journals: ArrayList<JournalData>
 )
 
+@Keep
 data class JournalData(
     val name: String,
     val url: String,

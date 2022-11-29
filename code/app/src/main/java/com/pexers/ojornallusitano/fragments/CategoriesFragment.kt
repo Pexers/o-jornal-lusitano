@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.fragments
@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentCategoriesBinding
+import com.pexers.ojornallusitano.utils.Categories
 import com.pexers.ojornallusitano.utils.JournalData
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
@@ -105,13 +106,3 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
 }
 
-// @formatter:off
-enum class Categories(val displayName: Int) {
-    ALL(R.string.category_all),
-    ECONOMY_POLITICS(R.string.category_economy_politics),
-    FASHION(R.string.category_fashion),
-    GENERAL(R.string.category_general),
-    SPORTS(R.string.category_sports),
-    TECHNOLOGY(R.string.category_technology)
-}
-// @formatter:on

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
+  ~ Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
   -->
 
 <resources>
-    <string name="app_name">O Jornal Lusitano</string>
-    <string name="about_description">O aplicativo foi desenvolvido para uso pessoal, por essa razão, o mesmo não deve ser copiado, distribuído, vendido ou licenciado por uma outra entidade diferente daquela que o desenvolveu. O aplicativo proporciona um acesso rápido aos jornais portugueses mais populares da atualidade, no entanto, não somos responsáveis pela veracidade dos seus conteúdos ou possíveis danos causados pelos mesmos.</string>
+    <string name="about_description">
+        O aplicativo foi desenvolvido para uso pessoal, por essa razão, o mesmo não deve ser
+        copiado, modificado, adaptado, distribuído, vendido ou licenciado por uma outra entidade
+        diferente daquela que o desenvolveu. O aplicativo proporciona um acesso rápido aos jornais
+        portugueses mais populares da atualidade, no entanto, não somos responsáveis pela
+        veracidade dos seus conteúdos ou possíveis danos causados pelos mesmos.</string>
     <string name="browse_journal">Abrir no browser</string>
     <string name="category_all">Todos</string>
     <string name="category_economy_politics">Economia/Política</string>

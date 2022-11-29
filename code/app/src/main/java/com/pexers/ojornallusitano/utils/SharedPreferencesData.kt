@@ -1,5 +1,5 @@
 /*
- * Copyright © 11/22/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.utils
@@ -23,7 +23,6 @@ object SharedPreferencesData {
             favourites =
                 sharedPreferences!!.getStringSet("favouritesSet", emptySet())!!.toMutableSet()
             editor = sharedPreferences!!.edit()
-            editor.apply()
         }
     }
 
