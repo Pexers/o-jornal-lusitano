@@ -1,7 +1,7 @@
 # O Jornal Lusitano 📰
-The app **O Jornal Lusitano** provides a quick in-app access to popular Portuguese newspapers. The app can be found at [_Google Play Store_](https://play.google.com/store/apps/details?id=com.pexers.ojornallusitano).
+The app **O Jornal Lusitano** provides quick in-app access to popular Portuguese newspapers. The app can be found on [_Google Play Store_](https://play.google.com/store/apps/details?id=com.pexers.ojornallusitano).
 
-This repository contains the app's source code, written in Kotlin for Android. Despite being focused on Portuguese newspapers, it can be easily adapted to support other international newspapers. 🌎
+This repository contains the app's source code, written in Kotlin for Android. Despite being focused on Portuguese newspapers, it can be easily modified to support different international newspapers. 🌎
 
 For more information regarding the _privacy policy_ and how to contact us, please visit our [_website_](https://sites.google.com/view/o-jornal-lusitano/home).
 
