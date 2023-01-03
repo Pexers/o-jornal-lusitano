@@ -4,6 +4,8 @@
 
 package com.pexers.ojornallusitano.activities
 
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.pexers.ojornallusitano.R
@@ -18,10 +20,14 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val versionName = this.packageManager.getPackageInfo(
-            this.packageName, 0
-        ).versionName
-        binding.textVersion.text = getString(R.string.version, versionName)
+        // Bypass deprecation problems
+        val packageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0))
+        } else {
+            packageManager.getPackageInfo(packageName, 0)
+        }
+
+        binding.textVersion.text = getString(R.string.version, packageInfo.versionName)  // Get app's current version
         binding.toolbarAbout.imageButtonGoBack.setOnClickListener { finish() }
     }
 
