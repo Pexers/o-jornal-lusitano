@@ -10,8 +10,7 @@ import java.net.URL
 object Network {
 
     fun getJournalsJson(): String {
-        // Synchronize Journals with SharedPreferences
-        val url = URL("https://pexers.github.io/dummy/")
+        val url = URL("https://pexers.github.io/o-jornal-lusitano/")
         val urlConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
         urlConnection.requestMethod = "GET"
         return try {

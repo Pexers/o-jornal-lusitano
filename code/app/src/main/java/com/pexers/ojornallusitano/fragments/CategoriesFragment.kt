@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.activities.MainActivity
 import com.pexers.ojornallusitano.databinding.FragmentCategoriesBinding
-import com.pexers.ojornallusitano.utils.Categories
-import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.model.Categories
+import com.pexers.ojornallusitano.model.JournalData
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 

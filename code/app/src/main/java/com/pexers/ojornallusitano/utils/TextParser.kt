@@ -5,6 +5,7 @@
 package com.pexers.ojornallusitano.utils
 
 import com.google.gson.Gson
+import com.pexers.ojornallusitano.model.JournalsData
 import java.io.InputStream
 
 object TextParser {

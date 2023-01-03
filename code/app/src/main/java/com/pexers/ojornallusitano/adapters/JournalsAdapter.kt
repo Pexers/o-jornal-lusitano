@@ -4,7 +4,7 @@
 
 package com.pexers.ojornallusitano.adapters
 
-import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.model.JournalData
 
 interface JournalsAdapter {
 

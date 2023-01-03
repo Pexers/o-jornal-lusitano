@@ -2,7 +2,7 @@
  * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
  */
 
-package com.pexers.ojornallusitano.utils
+package com.pexers.ojornallusitano.model
 
 import androidx.annotation.Keep
 import com.pexers.ojornallusitano.R

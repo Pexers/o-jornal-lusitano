@@ -5,7 +5,7 @@
 package com.pexers.ojornallusitano.activities
 
 import android.content.Intent
-import com.pexers.ojornallusitano.utils.JournalData
+import com.pexers.ojornallusitano.model.JournalData
 
 interface MainActivityListener {
 

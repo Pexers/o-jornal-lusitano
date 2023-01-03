@@ -1,8 +1,8 @@
 /*
- * Copyright © 11/29/2022, Pexers (https://github.com/Pexers)
+ * Copyright © 1/3/2023, Pexers (https://github.com/Pexers)
  */
 
-package com.pexers.ojornallusitano.utils
+package com.pexers.ojornallusitano.model
 
 import androidx.annotation.Keep
 
