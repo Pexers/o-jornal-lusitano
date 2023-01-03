@@ -9,14 +9,20 @@ import java.net.URL
 
 object Network {
 
-    fun getJournalsJson(): String {
+    fun getJournalsJson(): String? {
         val url = URL("https://pexers.github.io/o-jornal-lusitano/")
         val urlConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
         urlConnection.requestMethod = "GET"
-        return try {
+        urlConnection.setRequestProperty("Accept", "application/json;charset=utf-8")
+        try {
             if (urlConnection.responseCode == 200) {
-                TextParser.parseInStreamToString(urlConnection.inputStream)
-            } else ""
+                val responseJson = TextParser.parseInStreamToString(urlConnection.inputStream)
+                // Validate JSON response
+                if (responseJson.isNotBlank() && TextParser.isJsonValid(responseJson)) {
+                    return responseJson
+                }
+            }
+            return null
         } finally {
             urlConnection.disconnect()
         }

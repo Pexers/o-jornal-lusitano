@@ -16,8 +16,8 @@ class SyncJournalsWorker(context: Context, parameters: WorkerParameters) :
 
     override fun doWork(): Result {
         val responseJson = Network.getJournalsJson()  // Request journals from GitHub Pages API
-        return if (responseJson.isNotEmpty()) {
-            SharedPreferencesData.setJournals(responseJson)  // Save Journals response JSON
+        return if (responseJson != null) {  // Null indicates the response is not valid
+            SharedPreferencesData.setJournals(responseJson)  // Save Journals JSON
             Result.success()
         } else Result.failure()  // Service temporarily unavailable
     }

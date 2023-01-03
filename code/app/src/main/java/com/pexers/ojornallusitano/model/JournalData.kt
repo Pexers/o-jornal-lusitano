@@ -8,7 +8,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class JournalsData(
-    val journals: ArrayList<JournalData>
+    val journals: ArrayList<JournalData>?
 )
 
 @Keep

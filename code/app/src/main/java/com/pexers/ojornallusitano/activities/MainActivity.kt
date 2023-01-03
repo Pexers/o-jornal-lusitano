@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
@@ -33,7 +34,7 @@ import com.pexers.ojornallusitano.fragments.RecentFragment
 import com.pexers.ojornallusitano.model.Categories
 import com.pexers.ojornallusitano.model.JournalData
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
-import com.pexers.ojornallusitano.utils.TextParser.parseInStreamToString
+import com.pexers.ojornallusitano.utils.TextParser
 import com.pexers.ojornallusitano.utils.TextParser.parseJsonToJournalsData
 import com.pexers.ojornallusitano.workers.SyncJournalsWorker
 import java.util.concurrent.TimeUnit
@@ -81,13 +82,17 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     }
 
     private fun syncJournals() {
-        // Use Assets as backup if Journals not found in SharedPreferences
         val journalsJson = SharedPreferencesData.getJournals()
-            .ifEmpty { parseInStreamToString(application.assets.open("journals.json")) }
-        journals = parseJsonToJournalsData(journalsJson).journals
+        val journalsData = parseJsonToJournalsData(journalsJson).journals
+        journals = if (journalsData == null || journalsData.isEmpty()) {
+            // Use Assets as backup in case Journals were not found in SharedPreferences
+            parseJsonToJournalsData(TextParser.parseJournalsFromAssets(this)).journals!!
+        } else journalsData
         // Synchronize SharedPreferences periodically
+        val constraints = Constraints.Builder().setRequiresBatteryNotLow(true).build()
         val syncJournals =
-            PeriodicWorkRequest.Builder(SyncJournalsWorker::class.java, 15, TimeUnit.MINUTES)
+            PeriodicWorkRequest.Builder(SyncJournalsWorker::class.java, 1, TimeUnit.DAYS)
+                .setConstraints(constraints)
                 .build()
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             "syncJournals", ExistingPeriodicWorkPolicy.KEEP, syncJournals

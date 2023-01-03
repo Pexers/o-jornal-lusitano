@@ -22,15 +22,16 @@ object SharedPreferencesData {
         if (sharedPreferences == null) {
             sharedPreferences = context.getSharedPreferences(dataFile, Context.MODE_PRIVATE)
             sharedPreferences!!.apply {
-                editor = edit()
                 favourites = getStringSet(favouritesPref, emptySet())!!.toMutableSet()
+                editor = edit()
             }
         }
     }
 
-    fun getJournals() = sharedPreferences!!.getString(journalsPref, "")!!
+    fun getJournals() = sharedPreferences!!.getString(journalsPref, "{}")!!
 
-    fun setJournals(journalsJson: String) = editor.putString(journalsPref, journalsJson).apply()
+    fun setJournals(journalsJson: String) =
+        editor.putString(journalsPref.ifBlank { "{}" }, journalsJson).apply()
 
     fun addFavourite(journalName: String) {
         favourites!!.add(journalName)
