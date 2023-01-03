@@ -6,7 +6,7 @@ This repository contains the app's source code, written in Kotlin for Android. D
 For more information regarding the _privacy policy_ and how to contact us, please visit our [_website_](https://sites.google.com/view/o-jornal-lusitano/home).
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/47757441/204115466-74fd0b6c-c821-4846-8e00-e53d86a2991c.png" width="190">
+  <img src="https://user-images.githubusercontent.com/47757441/204115466-74fd0b6c-c821-4846-8e00-e53d86a2991c.png" width="185">
 </p>
 
 ## App screenshots 📱

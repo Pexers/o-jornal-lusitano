@@ -14,17 +14,23 @@ object SharedPreferencesData {
     var favourites: MutableSet<String>? = null
 
     private const val dataFile = "dataFile"
+    private const val journalsPref = "journalsJson"
     private const val favouritesPref = "favouritesSet"
     private const val startOnFavouritesPref = "startOnFavourites"
 
     fun init(context: Context) {
         if (sharedPreferences == null) {
             sharedPreferences = context.getSharedPreferences(dataFile, Context.MODE_PRIVATE)
-            favourites =
-                sharedPreferences!!.getStringSet("favouritesSet", emptySet())!!.toMutableSet()
-            editor = sharedPreferences!!.edit()
+            sharedPreferences!!.apply {
+                editor = edit()
+                favourites = getStringSet(favouritesPref, emptySet())!!.toMutableSet()
+            }
         }
     }
+
+    fun getJournals() = sharedPreferences!!.getString(journalsPref, "")!!
+
+    fun setJournals(journalsJson: String) = editor.putString(journalsPref, journalsJson).apply()
 
     fun addFavourite(journalName: String) {
         favourites!!.add(journalName)

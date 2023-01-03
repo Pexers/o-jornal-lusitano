@@ -27,7 +27,8 @@ class AboutActivity : AppCompatActivity() {
             packageManager.getPackageInfo(packageName, 0)
         }
 
-        binding.textVersion.text = getString(R.string.version, packageInfo.versionName)  // Get app's current version
+        binding.textVersion.text =
+            getString(R.string.version, packageInfo.versionName)  // Get app's current version
         binding.toolbarAbout.imageButtonGoBack.setOnClickListener { finish() }
     }
 

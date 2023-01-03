@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,9 +30,12 @@ import com.pexers.ojornallusitano.fragments.FavouritesFragment
 import com.pexers.ojornallusitano.fragments.RecentFragment
 import com.pexers.ojornallusitano.utils.Categories
 import com.pexers.ojornallusitano.utils.JournalData
-import com.pexers.ojornallusitano.utils.JsonParser.getJournalsData
-import com.pexers.ojornallusitano.utils.JsonParser.inputStreamToString
+import com.pexers.ojornallusitano.utils.Network
 import com.pexers.ojornallusitano.utils.SharedPreferencesData
+import com.pexers.ojornallusitano.utils.TextParser.parseInStreamToString
+import com.pexers.ojornallusitano.utils.TextParser.parseJsonToJournalsData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), MainActivityListener {
 
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         super.onCreate(savedInstanceState)
         // Load shared preferences
         SharedPreferencesData.init(this)
+        syncJournals()
         val startOnFavourites = SharedPreferencesData.startsOnFavourites()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -74,14 +79,24 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
+    private fun syncJournals() {
+        // Use Assets as a backup if Journals not found in SharedPreferences
+        val journalsJson = SharedPreferencesData.getJournals()
+            .ifEmpty { parseInStreamToString(application.assets.open("journals.json")) }
+        journals = parseJsonToJournalsData(journalsJson).journals
+        lifecycleScope.launch(Dispatchers.IO) {
+            val responseJson = Network.getJournalsJson()
+            if (responseJson.isNotEmpty())
+                SharedPreferencesData.setJournals(responseJson) // Save Journals response JSON
+        }
+    }
+
     private fun initAdView() {
         MobileAds.initialize(this) {}
         binding.adViewMain.loadAd(AdRequest.Builder().build())
     }
 
     private fun initRecyclerView(recyclerView: RecyclerView, startOnFavourites: Boolean) {
-        val journalsJson = inputStreamToString(application.assets.open("journals.json"))
-        journals = getJournalsData(journalsJson).journals
         recyclerView.apply {
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
             layoutManager = LinearLayoutManager(context)
