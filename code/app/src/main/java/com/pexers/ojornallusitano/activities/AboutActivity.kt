@@ -17,6 +17,11 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val versionName = this.packageManager.getPackageInfo(
+            this.packageName, 0
+        ).versionName
+        binding.textVersion.text = getString(R.string.version, versionName)
         binding.toolbarAbout.imageButtonGoBack.setOnClickListener { finish() }
     }
 

@@ -9,6 +9,8 @@ import java.io.InputStream
 
 object JsonParser {
 
+    //TODO: from time to time, get request this https://pexers.github.io/dummy/
+
     private val gson = Gson()
 
     fun getJournalsData(json: String): JournalsData = gson.fromJson(json, JournalsData::class.java)

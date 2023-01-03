@@ -23,11 +23,12 @@
     <string name="item_favourites">Favoritos</string>
     <string name="item_recent">Recente</string>
     <string name="our_website">O nosso website:</string>
-    <string name="remove_favourite_message">Tem a certeza que pretende remover este item dos favoritos?</string>
+    <string name="remove_favourite_message">Tem a certeza que pretende remover este jornal dos favoritos?</string>
     <string name="search_journal">Pesquisa pelo jornal</string>
     <string name="share_journal">Partilhar link</string>
     <string name="try_again">Tentar novamente</string>
-    <string name="you_are_offline">Estás offline</string>
+    <string name="version">Versão %1$s</string>
     <string name="no">Não</string>
     <string name="yes">Sim</string>
+    <string name="you_are_offline">Estás offline</string>
 </resources>

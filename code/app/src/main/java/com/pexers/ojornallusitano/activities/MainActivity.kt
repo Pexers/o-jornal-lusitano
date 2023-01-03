@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Load shared preferences
-        SharedPreferencesData.init(applicationContext)
+        SharedPreferencesData.init(this)
         val startOnFavourites = SharedPreferencesData.startsOnFavourites()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

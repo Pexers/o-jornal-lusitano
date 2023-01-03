@@ -106,7 +106,7 @@ class WebViewActivity : AppCompatActivity() {
 
     private fun isConnectedToNetwork(): Boolean {
         val connectManager =
-            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true  // Web page won't be available regardless
         val activeNetwork =
             connectManager.getNetworkCapabilities(connectManager.activeNetwork) ?: return false
