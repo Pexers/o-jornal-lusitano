@@ -3,7 +3,7 @@
 
 The app **O Jornal Lusitano** provides quick in-app access to popular Portuguese newspapers. This repository contains the app's source code written in Kotlin for Android. 
 
-Despite being focused on Portuguese newspapers, it can be easily modified to support different international newspapers. 🌎 Changing the data file `/docs/index.json` will automatically update the newspapers displayed in the app. Changes get synchronized once every 24 hours using the repository's GitHub Pages API.
+Despite being focused on Portuguese newspapers, it can be easily modified to support different international newspapers. 🌎 Changing the data file [_/docs/index.json_](https://github.com/Pexers/o-jornal-lusitano/blob/main/docs/index.json) will automatically update the newspapers displayed in the app. Changes get synchronized once every 24 hours using the repository's GitHub Pages API.
 
 For more information regarding the _privacy policy_ and how to contact us, please visit our [_website_](https://sites.google.com/view/o-jornal-lusitano/home).
 
