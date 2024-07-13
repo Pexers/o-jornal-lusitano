@@ -15,3 +15,17 @@ For more information regarding the _privacy policy_ and how to contact us, pleas
 |Access newspaper|Access newspaper (_dark mode_)|In-app webpage|Navigation drawer|
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------: |
 |<img src="https://user-images.githubusercontent.com/47757441/203153660-dfe3edd0-6dad-4d12-9697-19fe11339eed.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153847-b5e1b650-0ec1-4fa1-97f1-f1ab74be4d4f.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153706-a0bcb242-0435-400d-9246-6733b17b09bb.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153724-a95ad5cd-fea5-47c3-876b-beb59f09eb1d.jpg" width="170">
+
+## Building the app from the command line 
+1. Download Android's *[cmdline-tools](https://developer.android.com/studio#command-tools)*.
+2. Install the required licenses.
+    ```sh
+    $ sdkmanager --licenses
+    ```
+3. Place the licenses within `cmdline-tools/tools/bin`.
+4. Set the environment variable `ANDROID_HOME=cmdline-tools/tools/bin`.
+5. Make sure to set the required `signingConfigs` properties within the `build.gradle` file.
+6. Build the Android App Bundle `.aab` file.
+    ```sh
+    $ gradlew bundleRelease --warning-mode all
+    ```

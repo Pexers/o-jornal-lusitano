@@ -26,6 +26,8 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
+        overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val journalUrl = intent.getStringExtra("url")!!
@@ -34,12 +36,6 @@ class WebViewActivity : AppCompatActivity() {
         setupWebView(webView)
         binding.textJournalUrl.text = journalUrl
         webView.loadUrl(journalUrl)
-    }
-
-    // Override to add transition animation
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setToolbarListeners() {

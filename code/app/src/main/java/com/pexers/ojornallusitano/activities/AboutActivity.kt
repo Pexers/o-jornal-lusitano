@@ -17,6 +17,8 @@ class AboutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
+        overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -30,12 +32,6 @@ class AboutActivity : AppCompatActivity() {
         binding.textVersion.text =
             getString(R.string.version, packageInfo.versionName)  // Get app's current version
         binding.toolbarAbout.imageButtonGoBack.setOnClickListener { finish() }
-    }
-
-    // Override to add transition animation
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
 }

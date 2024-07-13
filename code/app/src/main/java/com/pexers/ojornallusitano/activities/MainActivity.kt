@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         // Send URL as an intent parameter
         webViewActivity.putExtra("url", journal.url)
         startActivity(webViewActivity)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun syncJournals() {
@@ -128,7 +127,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
     private fun startAboutActivity() {
         val aboutActivity = Intent(this, AboutActivity::class.java)
         startActivity(aboutActivity)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     fun updateRecyclerView(dataSet: ArrayList<JournalData>, skipAnimation: Boolean = false) {

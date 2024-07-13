@@ -4,10 +4,10 @@
 
 <resources>
     <string name="about_description">
-        O aplicativo foi desenvolvido para uso pessoal, por essa razão, o mesmo não deve ser
+        O aplicativo foi desenvolvido para uso pessoal, por esta razão, o mesmo não deve ser
         copiado, modificado, adaptado, distribuído, vendido ou licenciado por uma outra entidade
         diferente daquela que o desenvolveu. O aplicativo proporciona um acesso rápido aos jornais
-        portugueses mais populares da atualidade, no entanto, não somos responsáveis pela
+        portugueses mais populares da atualidade. Contudo, não nos responsabilizamos pela
         veracidade dos seus conteúdos ou possíveis danos causados pelos mesmos.</string>
     <string name="browse_journal">Abrir no browser</string>
     <string name="category_all">Todos</string>
