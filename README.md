@@ -1,4 +1,5 @@
 # O Jornal Lusitano 📰
+
 [![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.pexers.ojornallusitano)  
 
 The app **O Jornal Lusitano** provides quick in-app access to popular Portuguese newspapers. This repository contains the app's source code written in Kotlin for Android. 
@@ -12,11 +13,18 @@ For more information regarding the _privacy policy_ and how to contact us, pleas
 </p>
 
 ## App screenshots 📱
+
 |Access newspaper|Access newspaper (_dark mode_)|In-app webpage|Navigation drawer|
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------: |
 |<img src="https://user-images.githubusercontent.com/47757441/203153660-dfe3edd0-6dad-4d12-9697-19fe11339eed.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153847-b5e1b650-0ec1-4fa1-97f1-f1ab74be4d4f.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153706-a0bcb242-0435-400d-9246-6733b17b09bb.jpg" width="170">|<img src="https://user-images.githubusercontent.com/47757441/203153724-a95ad5cd-fea5-47c3-876b-beb59f09eb1d.jpg" width="170">
 
-## Building the app from the command line 
+  
+## Building the app
+
+This repository includes a GitHub Action workflow that automatically builds a signed Android App Bundle (AAB) file through manual trigger.
+
+### Using the CLI
+
 1. Download Android's *[cmdline-tools](https://developer.android.com/studio#command-tools)*.
 2. Install the required licenses.
     ```sh
