@@ -206,7 +206,7 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
 
     private fun addToRecentQueue(journal: JournalData) {
         if (recentJournals.contains(journal)) recentJournals.remove(journal)
-        else if (recentJournals.size == 10) recentJournals.removeLast()
+        else if (recentJournals.size == 10) recentJournals.removeAt(recentJournals.lastIndex)
         recentJournals.add(0, journal)
     }
 
