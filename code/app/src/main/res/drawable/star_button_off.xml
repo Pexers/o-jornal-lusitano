@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/20/2022, Pexers (https://github.com/Pexers)
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <!-- The layout size enables the increase of toggle size without increasing icon size -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item

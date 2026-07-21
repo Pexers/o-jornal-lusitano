@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright © 11/21/2022, Pexers (https://github.com/Pexers)
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.OJornalLusitano" parent="Theme.AppCompat.NoActionBar">

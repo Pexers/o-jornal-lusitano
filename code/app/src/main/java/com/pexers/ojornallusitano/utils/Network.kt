@@ -1,5 +1,5 @@
 /*
- * Copyright © 1/3/2023, Pexers (https://github.com/Pexers)
+ * Copyright (c) 2023 Pexers (https://github.com/Pexers)
  */
 
 package com.pexers.ojornallusitano.utils
