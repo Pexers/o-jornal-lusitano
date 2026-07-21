@@ -32,12 +32,22 @@
     },
     {
       "name": "Diário da República",
-      "url": "https://dre.pt/dre/home",
+      "url": "https://diariodarepublica.pt/dr/home",
       "category": "ECONOMY_POLITICS"
     },
     {
+      "name": "Destak",
+      "url": "https://www.destak.pt",
+      "category": "GENERAL"
+    },
+    {
       "name": "Dinheiro Vivo",
-      "url": "https://www.dinheirovivo.pt",
+      "url": "https://dinheirovivo.dn.pt/",
+      "category": "ECONOMY_POLITICS"
+    },
+    {
+      "name": "ECO",
+      "url": "https://eco.sapo.pt",
       "category": "ECONOMY_POLITICS"
     },
     {
@@ -48,6 +58,11 @@
     {
       "name": "Expresso",
       "url": "https://expresso.pt/",
+      "category": "GENERAL"
+    },
+    {
+      "name": "Flash",
+      "url": "https://www.flash.pt",
       "category": "GENERAL"
     },
     {
@@ -63,11 +78,6 @@
     {
       "name": "Jornal de Notícias",
       "url": "https://www.jn.pt/",
-      "category": "GENERAL"
-    },
-    {
-      "name": "Jornal i",
-      "url": "https://ionline.sapo.pt/",
       "category": "GENERAL"
     },
     {
@@ -101,6 +111,11 @@
       "category": "TECHNOLOGY"
     },
     {
+      "name": "Pplware",
+      "url": "https://pplware.sapo.pt",
+      "category": "TECHNOLOGY"
+    },
+    {
       "name": "Público",
       "url": "https://www.publico.pt",
       "category": "GENERAL"
@@ -111,8 +126,18 @@
       "category": "SPORTS"
     },
     {
+      "name": "RTP Notícias",
+      "url": "https://www.rtp.pt/noticias",
+      "category": "GENERAL"
+    },
+    {
       "name": "Sábado",
       "url": "https://www.sabado.pt",
+      "category": "GENERAL"
+    },
+    {
+      "name": "SIC Notícias",
+      "url": "https://sicnoticias.pt",
       "category": "GENERAL"
     },
     {
@@ -122,7 +147,17 @@
     },
     {
       "name": "SOL",
-      "url": "https://sol.sapo.pt",
+      "url": "https://sol.iol.pt/",
+      "category": "GENERAL"
+    },
+    {
+      "name": "TSF",
+      "url": "https://www.tsf.pt",
+      "category": "GENERAL"
+    },
+    {
+      "name": "TVI24",
+      "url": "https://tvi24.iol.pt",
       "category": "GENERAL"
     },
     {
