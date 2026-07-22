@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.databinding.ActivityAboutBinding
 
@@ -18,8 +17,12 @@ class AboutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityCompat.overrideActivityTransition(this, ActivityCompat.OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
-        ActivityCompat.overrideActivityTransition(this, ActivityCompat.OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
+        } else {
+            @Suppress("DEPRECATION") overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
