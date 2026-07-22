@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import android.webkit.WebView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.databinding.ActivityWebViewBinding
 
@@ -26,8 +27,8 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
-        overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
+        ActivityCompat.overrideActivityTransition(this, ActivityCompat.OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
+        ActivityCompat.overrideActivityTransition(this, ActivityCompat.OVERRIDE_TRANSITION_CLOSE, R.anim.slide_in_left, R.anim.slide_out_right)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val journalUrl = intent.getStringExtra("url")!!
