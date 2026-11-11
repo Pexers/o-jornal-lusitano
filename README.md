@@ -21,6 +21,10 @@ For more information regarding the _privacy policy_ and how to contact us, pleas
   
 ## Building the app
 
+The build requires JDK 17 and Android SDK platform 37. The Gradle wrapper uses
+Gradle 9.6.0 with Android Gradle plugin 9.5.1 and its built-in Kotlin support.
+Java and Kotlin both target JVM 17; the minimum supported Android API is 24.
+
 This repository includes a GitHub Action workflow that automatically builds a signed Android App Bundle (AAB) file through manual trigger.
 
 ### Using the CLI
