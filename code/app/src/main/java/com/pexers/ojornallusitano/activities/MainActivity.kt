@@ -21,8 +21,6 @@ import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.pexers.ojornallusitano.R
 import com.pexers.ojornallusitano.adapters.CategoriesAdapter
 import com.pexers.ojornallusitano.adapters.FavouritesAdapter
@@ -65,7 +63,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         supportActionBar!!.setDisplayShowTitleEnabled(false)  // Remove title from ActionBar
         setupNav(toolbar, startOnFavourites)
         initRecyclerView(binding.recyclerViewMain, startOnFavourites)
-        initAdView()
     }
 
     override fun startNewActivity(intent: Intent) {
@@ -96,11 +93,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             "syncJournals", ExistingPeriodicWorkPolicy.KEEP, syncJournals
         )
-    }
-
-    private fun initAdView() {
-        MobileAds.initialize(this) {}
-        binding.adViewMain.loadAd(AdRequest.Builder().build())
     }
 
     private fun initRecyclerView(recyclerView: RecyclerView, startOnFavourites: Boolean) {

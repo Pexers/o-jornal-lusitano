@@ -41,12 +41,10 @@ class CategoriesAdapter(
             starToggle = view.findViewById(R.id.toggle_categoryJournalStar)
             val frameLayout = view.findViewById<FrameLayout>(R.id.frameLayout_categoryJournal)
             frameLayout.setOnClickListener {
-                mainActListener.startWebViewActivity(this@CategoriesAdapter.dataSet[adapterPosition])
-            }
-            starToggle.setOnCheckedChangeListener { _, isChecked ->
-                val journal = this@CategoriesAdapter.dataSet[adapterPosition]
-                if (isChecked) SharedPreferencesData.addFavourite(journal.name)
-                else SharedPreferencesData.removeFavourite(journal.name)
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    mainActListener.startWebViewActivity(this@CategoriesAdapter.dataSet[position])
+                }
             }
         }
     }
@@ -65,7 +63,16 @@ class CategoriesAdapter(
         // contents of the view with that element
         val journalName = dataSet[position].name
         viewHolder.textView.text = journalName
+        viewHolder.starToggle.setOnCheckedChangeListener(null)
         viewHolder.starToggle.isChecked = SharedPreferencesData.favourites!!.contains(journalName)
+        viewHolder.starToggle.setOnCheckedChangeListener { _, isChecked ->
+            val currentPosition = viewHolder.bindingAdapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                val journal = dataSet[currentPosition]
+                if (isChecked) SharedPreferencesData.addFavourite(journal.name)
+                else SharedPreferencesData.removeFavourite(journal.name)
+            }
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

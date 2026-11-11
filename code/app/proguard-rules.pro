@@ -16,10 +16,6 @@
     @android.webkit.JavascriptInterface <methods>;
 }
 
-# AdMob optimizations
--keep class com.google.android.gms.ads.** { *; }
--dontwarn com.google.android.gms.ads.**
-
 # Keep custom adapters
 -keep class com.pexers.ojornallusitano.adapters.** { *; }
 

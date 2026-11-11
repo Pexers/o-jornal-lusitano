@@ -15,9 +15,6 @@
         android:theme="@style/Theme.OJornalLusitano"
         tools:replace="android:icon"
         tools:targetApi="37">
-    <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7607675059457998~1194410757" />
     <activity android:name=".activities.WebViewActivity" />
     <activity android:name=".activities.AboutActivity" />
     <activity
